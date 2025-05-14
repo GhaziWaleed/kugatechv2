@@ -13,16 +13,11 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-6 mb-6 md:mb-0">
-            <a href="#" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
-              <Github className="h-6 w-6" />
-            </a>
-            <a href="#" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
-              <Twitter className="h-6 w-6" />
-            </a>
-            <a href="#" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
+
+            <a href="https://pk.linkedin.com/company/kuga-tech?trk=public_post_feed-actor-name" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
               <Linkedin className="h-6 w-6" />
             </a>
-            <a href="#" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
+            <a href="https://www.instagram.com/kuga_technologies/?theme=dark" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
               <Instagram className="h-6 w-6" />
             </a>
           </div>
