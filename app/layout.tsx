@@ -10,8 +10,12 @@ export const metadata: Metadata = {
   description:
     "KugaTech is an IT company specializing in software development, web development, mobile apps, and more.",
   icons: {
-    icon: [{ url: "/logo.png" }],
+    icon: [
+      { url: "/logo.png", sizes: "32x32" },
+      { url: "/logo.png", sizes: "16x16" },
+    ],
     apple: [{ url: "/logo.png" }],
+    shortcut: ["/logo.png"],
   },
 }
 
