@@ -19,7 +19,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       <div className="flex flex-col items-center justify-center">
         {/* Logo placeholder - replace with your actual logo */}
         <div className="relative w-32 h-32 mb-6">
-          <Image src="/placeholder.svg?height=128&width=128" alt="KugaTech Logo" fill className="object-contain" />
+          <Image src="/logo.png?height=128&width=128" alt="KugaTech Logo" fill className="object-contain" />
         </div>
 
         <motion.h1

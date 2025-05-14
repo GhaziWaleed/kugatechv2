@@ -109,7 +109,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Our Location</h3>
-                <p className="text-gray-300">123 Tech Street, Silicon Valley, CA 94043</p>
+                <p className="text-gray-300">GM Heights, Soan Avenue, Islamabad, Pakistan</p>
               </div>
             </div>
 
@@ -119,7 +119,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Phone Number</h3>
-                <p className="text-gray-300">+1 (555) 123-4567</p>
+                <p className="text-gray-300">+92333-0262686</p>
               </div>
             </div>
 
