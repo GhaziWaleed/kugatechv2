@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { Github, Linkedin, ChevronDown, X } from "lucide-react"
+import { Github, Linkedin, X, Info } from "lucide-react"
 import { useState } from "react"
 import { useMobile } from "@/hooks/use-mobile"
 
@@ -124,18 +124,7 @@ export default function Team() {
                   {/* Always show short bio */}
                   <p className="text-gray-300 mb-4">{member.shortBio}</p>
 
-                  {/* Mobile-only expand indicator */}
-                  {isMobile && (
-                    <div className="flex justify-center mb-2">
-                      <ChevronDown
-                        className={`h-5 w-5 text-[#30BAAF] transition-transform duration-300 ${
-                          expandedMember === index ? "rotate-180" : ""
-                        }`}
-                      />
-                    </div>
-                  )}
-
-                  <div className="flex justify-center space-x-4">
+                  <div className="flex justify-center space-x-4 mb-4">
                     {member.github && (
                       <a
                         href={member.github}
@@ -158,6 +147,12 @@ export default function Team() {
                         <Linkedin className="h-6 w-6" />
                       </a>
                     )}
+                  </div>
+
+                  {/* Instruction text */}
+                  <div className="flex items-center justify-center text-xs text-gray-400 mt-2">
+                    <Info className="h-3 w-3 mr-1 text-[#30BAAF]" />
+                    <span>{isMobile ? "Tap for details" : "Hover for details"}</span>
                   </div>
                 </div>
               </motion.div>
