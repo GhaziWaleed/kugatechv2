@@ -47,14 +47,14 @@ export default function Navbar() {
       )}
     >
       {/* Apple-like pill container with blur effect */}
-      <div className="rounded-full bg-black/30 backdrop-blur-md border border-white/10 px-6 py-3 shadow-lg">
-        <div className="flex items-center justify-center space-x-1 sm:space-x-2 md:space-x-8">
+      <div className="rounded-full bg-black/30 backdrop-blur-md border border-white/10 px-2 sm:px-6 py-2 sm:py-3 shadow-lg">
+        <div className="flex items-center justify-center space-x-0.5 sm:space-x-1 md:space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "text-white hover:text-[#30BAAF] transition-colors px-3 py-1 rounded-full",
+                "text-xs sm:text-sm md:text-base text-white hover:text-[#30BAAF] transition-colors px-1.5 sm:px-3 py-1 rounded-full",
                 activeSection === item.href.substring(1) && "bg-[#30BAAF]/20 text-[#30BAAF]",
               )}
               onClick={(e) => {
