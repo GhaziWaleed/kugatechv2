@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig}1 */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export', // 👈 This enables static export for Netlify
 
