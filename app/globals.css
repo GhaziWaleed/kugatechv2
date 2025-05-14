@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 40, 50;
+  --background-end-rgb: 5, 30, 40;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  :root {
+    --background: 180 70% 10%;
+    --foreground: 0 0% 98%;
+    --card: 180 70% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 180 70% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 180 70% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 30% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 180 30% 20%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 180 30% 20%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 30% 20%;
+    --input: 180 30% 20%;
+    --ring: 180 70% 45%;
+  }
+}
