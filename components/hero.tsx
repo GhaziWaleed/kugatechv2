@@ -24,7 +24,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <div className="relative w-24 h-24 md:w-32 md:h-32">
-              <Image src="/placeholder.svg?height=128&width=128" alt="KugaTech Logo" fill className="object-contain" />
+              <Image src="/logo.png?height=128&width=128" alt="KugaTech Logo" fill className="object-contain" />
             </div>
           </motion.div>
 

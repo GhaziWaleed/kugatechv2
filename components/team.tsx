@@ -6,45 +6,48 @@ import { Github, Linkedin } from "lucide-react"
 
 const teamMembers = [
   {
-    name: "Alex Johnson",
-    role: "CEO & Founder",
-    bio: "With over 15 years of experience in software development and business leadership, Alex leads our vision and strategy.",
-    image: "/placeholder.svg?height=400&width=400",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "Sarah Chen",
-    role: "CTO",
-    bio: "Sarah brings deep technical expertise in cloud architecture and AI, driving our technology innovation.",
-    image: "/placeholder.svg?height=400&width=400",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "Michael Rodriguez",
-    role: "Lead Developer",
-    bio: "Michael specializes in full-stack development and has led numerous successful projects for enterprise clients.",
-    image: "/placeholder.svg?height=400&width=400",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "Priya Patel",
-    role: "UI/UX Designer",
-    bio: "Priya creates beautiful, intuitive interfaces that enhance user experience and drive engagement.",
-    image: "/placeholder.svg?height=400&width=400",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "David Kim",
-    role: "Project Manager",
-    bio: "David ensures our projects are delivered on time and within budget while maintaining the highest quality standards.",
-    image: "/placeholder.svg?height=400&width=400",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
+      name: "Ali Goreja",
+      role: "Cloud Engineer",
+      image: "/goreja_1.png", // Update this path to your actual image
+      bio: "10+ years of experience in software development and entrepreneurship, driving innovation and building successful products. Proven ability to lead cross-functional teams and navigate complex technical challenges. Expertise spans the full software development lifecycle, from concept to launch and beyond.",
+        linkedin: "https://linkedin.com/in/aligoreja",
+        github: "https://github.com/aligoreja",
+
+    },
+    {
+      name: "Ghazi Waleed",
+      role: "Lead Developer",
+      image: "/ghazi_1.png", // Update this path to your actual image
+      bio: "Full-stack developer with expertise in React, Node.js, and cloud architecture. Proven ability to build scalable and efficient web applications from concept to deployment. Adept at bridging the gap between front-end and back-end development, delivering seamless user experiences and robust solutions.",
+        linkedin: "https://www.linkedin.com/in/ghazi-waleed-asif-953405218/",
+        github: "https://github.com/ghaziwaleed",
+
+    },
+    {
+      name: "Usman Haroon",
+      role: "Solution Architect",
+      image: "/usman_1.png", // Update this path to your actual image
+      bio: "A results-oriented Solution Architect with a strong engineering foundation. Proven ability to translate business needs into robust and scalable technical solutions. Expertise in cloud technologies, data architecture and a passion for designing innovative and efficient systems.",
+        linkedin: "https://www.linkedin.com/in/muhammad-usman-haroon-8a9342189/",
+        github: "https://github.com/usmanharoon",
+      
+    },
+    {
+      name: "Umar Arif",
+      role: "SDET Architect",
+      image: "/umar_1.png", // Update this path to your actual image
+      bio: "Concise and results-driven SDET Architect with a strong engineering background. Expertise in building robust test automation frameworks and strategies to ensure software quality and reliability. Proven ability to collaborate with development teams and drive quality-first practices.",
+       //linkedin: "https://linkedin.com/in/sheikhumer",
+        github: "https://github.com/sheikhumer",
+    },
+    {
+      name: "Kaleem Tahir",
+      role: "Business Analyst",
+      image: "/kaleem_1.png", // Update this path to your actual image
+      bio: "A dynamic leader blending the strategic vision of a CMO with the analytical precision of a Business Analyst. Driving data-informed marketing strategies, optimizing business processes, and identifying growth opportunities to maximize ROI and achieve sustainable business success.",
+        linkedin: "https://www.linkedin.com/in/kaleem-tahir-64064226a/",
+        github: "https://github.com/kaleemtahir",
+    },
 ]
 
 export default function Team() {
