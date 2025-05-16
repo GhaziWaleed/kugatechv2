@@ -70,6 +70,10 @@ export default function Team() {
     }
   }
 
+  // Split team members into top row (first 3) and bottom row (last 2)
+  const topRowMembers = teamMembers.slice(0, 3)
+  const bottomRowMembers = teamMembers.slice(3)
+
   return (
     <section id="team" className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
@@ -94,137 +98,185 @@ export default function Team() {
           </motion.p>
         </div>
 
-        {/* Grid layout with 4 members per row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <div
+        {/* Top row - 3 members */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+          {topRowMembers.map((member, index) => (
+            <TeamMemberCard
               key={index}
-              className="relative group"
-              onMouseEnter={() => !isMobile && setExpandedMember(index)}
-              onMouseLeave={() => !isMobile && setExpandedMember(null)}
-            >
-              {/* Base card */}
-              <motion.div
-                className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 h-full"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => isMobile && handleToggle(index)}
-              >
-                <div className="relative w-full pt-6 flex justify-center">
-                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#30BAAF]/50">
-                    <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
-                  </div>
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                  <p className="text-[#30BAAF] mb-3">{member.role}</p>
+              member={member}
+              index={index}
+              expandedMember={expandedMember}
+              setExpandedMember={setExpandedMember}
+              isMobile={isMobile}
+              handleToggle={handleToggle}
+            />
+          ))}
+        </div>
 
-                  {/* Always show short bio */}
-                  <p className="text-gray-300 mb-4">{member.shortBio}</p>
-
-                  <div className="flex justify-center space-x-4 mb-4">
-                    {member.github && (
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-[#30BAAF] transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Github className="h-6 w-6" />
-                      </a>
-                    )}
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-[#30BAAF] transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Linkedin className="h-6 w-6" />
-                      </a>
-                    )}
-                  </div>
-
-                  {/* Instruction text */}
-                  <div className="flex items-center justify-center text-xs text-gray-400 mt-2">
-                    <Info className="h-3 w-3 mr-1 text-[#30BAAF]" />
-                    <span>{isMobile ? "Tap for details" : "Hover for details"}</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Expanded bio overlay */}
-              <AnimatePresence>
-                {expandedMember === index && (
-                  <motion.div
-                    className="absolute top-0 left-0 right-0 z-20 bg-black/90 backdrop-blur-md rounded-lg border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 p-6"
-                    initial={{ opacity: 0, y: 10, height: "100%" }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      height: "auto",
-                      minHeight: "100%",
-                    }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                      {isMobile && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setExpandedMember(null)
-                          }}
-                          className="text-gray-400 hover:text-white"
-                          aria-label="Close"
-                        >
-                          <X className="h-5 w-5" />
-                        </button>
-                      )}
-                    </div>
-                    <p className="text-[#30BAAF] mb-4">{member.role}</p>
-                    <p className="text-gray-300 mb-6">{member.fullBio}</p>
-                    <div className="flex space-x-4">
-                      {member.github && (
-                        <a
-                          href={member.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-300 hover:text-[#30BAAF] transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github className="h-6 w-6" />
-                        </a>
-                      )}
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-300 hover:text-[#30BAAF] transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Linkedin className="h-6 w-6" />
-                        </a>
-                      )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Desktop hover indicator */}
-              {!isMobile && (
-                <div className="absolute inset-0 bg-[#30BAAF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
-              )}
-            </div>
+        {/* Bottom row - 2 members centered */}
+        <div className="flex flex-col sm:flex-row justify-center gap-8">
+          {bottomRowMembers.map((member, index) => (
+            <TeamMemberCard
+              key={index + 3}
+              member={member}
+              index={index + 3}
+              expandedMember={expandedMember}
+              setExpandedMember={setExpandedMember}
+              isMobile={isMobile}
+              handleToggle={handleToggle}
+              className="sm:w-[calc(33.333%-1rem)]" // Match width of cards in top row
+            />
           ))}
         </div>
       </div>
     </section>
+  )
+}
+
+// Extracted TeamMemberCard component to avoid code duplication
+interface TeamMemberCardProps {
+  member: (typeof teamMembers)[0]
+  index: number
+  expandedMember: number | null
+  setExpandedMember: (index: number | null) => void
+  isMobile: boolean
+  handleToggle: (index: number) => void
+  className?: string
+}
+
+function TeamMemberCard({
+  member,
+  index,
+  expandedMember,
+  setExpandedMember,
+  isMobile,
+  handleToggle,
+  className = "",
+}: TeamMemberCardProps) {
+  return (
+    <div
+      className={`relative group ${className}`}
+      onMouseEnter={() => !isMobile && setExpandedMember(index)}
+      onMouseLeave={() => !isMobile && setExpandedMember(null)}
+    >
+      {/* Base card */}
+      <motion.div
+        className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 h-full"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        onClick={() => isMobile && handleToggle(index)}
+      >
+        <div className="relative w-full pt-6 flex justify-center">
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#30BAAF]/50">
+            <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+          </div>
+        </div>
+        <div className="p-6 text-center">
+          <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+          <p className="text-[#30BAAF] mb-3">{member.role}</p>
+
+          {/* Always show short bio */}
+          <p className="text-gray-300 mb-4">{member.shortBio}</p>
+
+          <div className="flex justify-center space-x-4 mb-4">
+            {member.github && (
+              <a
+                href={member.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Github className="h-6 w-6" />
+              </a>
+            )}
+            {member.linkedin && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Linkedin className="h-6 w-6" />
+              </a>
+            )}
+          </div>
+
+          {/* Instruction text */}
+          <div className="flex items-center justify-center text-xs text-gray-400 mt-2">
+            <Info className="h-3 w-3 mr-1 text-[#30BAAF]" />
+            <span>{isMobile ? "Tap for details" : "Hover for details"}</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Expanded bio overlay */}
+      <AnimatePresence>
+        {expandedMember === index && (
+          <motion.div
+            className="absolute top-0 left-0 right-0 z-20 bg-black/90 backdrop-blur-md rounded-lg border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 p-6"
+            initial={{ opacity: 0, y: 10, height: "100%" }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              height: "auto",
+              minHeight: "100%",
+            }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-xl font-bold text-white">{member.name}</h3>
+              {isMobile && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setExpandedMember(null)
+                  }}
+                  className="text-gray-400 hover:text-white"
+                  aria-label="Close"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+            <p className="text-[#30BAAF] mb-4">{member.role}</p>
+            <p className="text-gray-300 mb-6">{member.fullBio}</p>
+            <div className="flex space-x-4">
+              {member.github && (
+                <a
+                  href={member.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Github className="h-6 w-6" />
+                </a>
+              )}
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop hover indicator */}
+      {!isMobile && (
+        <div className="absolute inset-0 bg-[#30BAAF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
+      )}
+    </div>
   )
 }
