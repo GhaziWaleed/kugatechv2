@@ -16,7 +16,7 @@ import BackToTop from "@/components/back-to-top"
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true)
 
-  // Disable scroll when splash screen is showing2
+  // aDisable scroll when splash screen is showing2
   useEffect(() => {
     if (showSplash) {
       document.body.style.overflow = "hidden"
