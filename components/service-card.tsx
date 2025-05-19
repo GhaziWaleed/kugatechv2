@@ -21,7 +21,7 @@ export default function ServiceCard({ title, description, icon, index, onHover }
 
   return (
     <motion.div
-      className="bg-black/30 backdrop-blur-sm rounded-lg p-5 hover:bg-black/50 transition-all hover:shadow-lg hover:shadow-[#30BAAF]/20 relative group cursor-pointer"
+      className="bg-black/30 backdrop-blur-sm rounded-2xl p-5 hover:bg-black/50 transition-all hover:shadow-lg hover:shadow-[#30BAAF]/20 relative group cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

@@ -1,8 +1,8 @@
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Linkedin, Instagram } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-black/50 backdrop-blur-md py-12">
+    <footer className="bg-black/50 backdrop-blur-md py-12 rounded-t-3xl">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
@@ -13,11 +13,16 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-6 mb-6 md:mb-0">
-
-            <a href="https://pk.linkedin.com/company/kuga-tech?trk=public_post_feed-actor-name" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
+            <a
+              href="https://pk.linkedin.com/company/kuga-tech?trk=public_post_feed-actor-name"
+              className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+            >
               <Linkedin className="h-6 w-6" />
             </a>
-            <a href="https://www.instagram.com/kuga_technologies/?theme=dark" className="text-gray-300 hover:text-[#30BAAF] transition-colors">
+            <a
+              href="https://www.instagram.com/kuga_technologies/?theme=dark"
+              className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+            >
               <Instagram className="h-6 w-6" />
             </a>
           </div>

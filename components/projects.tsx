@@ -41,7 +41,7 @@ export default function Projects() {
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden hover:shadow-lg hover:shadow-[#30BAAF]/20 transition-all"
+                  className="bg-black/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-[#30BAAF]/20 transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -53,7 +53,7 @@ export default function Projects() {
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none md:rounded-bl-2xl"
                       />
                     </div>
                     <div className="md:w-3/5 p-6">

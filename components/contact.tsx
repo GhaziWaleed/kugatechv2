@@ -104,7 +104,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-start space-x-4">
-              <div className="bg-[#30BAAF]/20 p-3 rounded-full">
+              <div className="bg-[#30BAAF]/20 p-3 rounded-xl">
                 <MapPin className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
@@ -114,7 +114,7 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-[#30BAAF]/20 p-3 rounded-full">
+              <div className="bg-[#30BAAF]/20 p-3 rounded-xl">
                 <Phone className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
@@ -124,7 +124,7 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-[#30BAAF]/20 p-3 rounded-full">
+              <div className="bg-[#30BAAF]/20 p-3 rounded-xl">
                 <Mail className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
@@ -135,7 +135,7 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-lg p-8"
+            className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-2xl p-8"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -148,7 +148,7 @@ export default function Contact() {
                 <p className="text-gray-300 text-center mb-6">{formStatus.message}</p>
                 <button
                   onClick={() => setFormStatus({ status: "idle" })}
-                  className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-lg transition-all"
+                  className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-xl transition-all"
                 >
                   Send Another Message
                 </button>
@@ -165,7 +165,7 @@ export default function Contact() {
                       id="from_name"
                       name="from_name"
                       required
-                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
                       disabled={formStatus.status === "submitting"}
                     />
                   </div>
@@ -178,7 +178,7 @@ export default function Contact() {
                       id="from_email"
                       name="from_email"
                       required
-                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
                       disabled={formStatus.status === "submitting"}
                     />
                   </div>
@@ -193,7 +193,7 @@ export default function Contact() {
                     id="subject"
                     name="subject"
                     required
-                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
                     disabled={formStatus.status === "submitting"}
                   />
                 </div>
@@ -207,7 +207,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={6}
-                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
                     disabled={formStatus.status === "submitting"}
                   ></textarea>
                 </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                 <input type="hidden" name="to_email" value="contact@kugatech.com" />
 
                 {formStatus.status === "error" && (
-                  <div className="bg-red-500/20 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg flex items-start">
+                  <div className="bg-red-500/20 border border-red-500/50 text-red-200 px-4 py-3 rounded-xl flex items-start">
                     <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
                     <p>{formStatus.message}</p>
                   </div>
@@ -225,7 +225,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={formStatus.status === "submitting"}
-                  className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 flex items-center justify-center"
+                  className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
                 >
                   {formStatus.status === "submitting" ? (
                     <>

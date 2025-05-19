@@ -161,7 +161,7 @@ function TeamMemberCard({
     >
       {/* Base card */}
       <motion.div
-        className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 h-full"
+        className="bg-black/30 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 h-full"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -217,7 +217,7 @@ function TeamMemberCard({
       <AnimatePresence>
         {expandedMember === index && (
           <motion.div
-            className="absolute top-0 left-0 right-0 z-20 bg-black/90 backdrop-blur-md rounded-lg border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 p-6"
+            className="absolute top-0 left-0 right-0 z-20 bg-black/90 backdrop-blur-md rounded-2xl border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 p-6"
             initial={{ opacity: 0, y: 10, height: "100%" }}
             animate={{
               opacity: 1,
@@ -275,7 +275,7 @@ function TeamMemberCard({
 
       {/* Desktop hover indicator */}
       {!isMobile && (
-        <div className="absolute inset-0 bg-[#30BAAF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[#30BAAF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
       )}
     </div>
   )
