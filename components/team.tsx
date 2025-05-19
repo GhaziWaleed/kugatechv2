@@ -46,7 +46,16 @@ const teamMembers = [
       "Concise and results-driven SDET Architect with a strong engineering background. Expertise in building robust test automation frameworks and strategies to ensure software quality and reliability. Proven ability to collaborate with development teams and drive quality-first practices.",
     github: "https://github.com/sheikhumer",
   },
-
+  {
+    name: "Kaleem Tahir",
+    role: "Business Analyst",
+    image: "/kaleem_1.png", // Update this path to your actual image
+    shortBio: "A dynamic leader blending strategic vision with analytical precision.",
+    fullBio:
+      "A dynamic leader blending the strategic vision of a CMO with the analytical precision of a Business Analyst. Driving data-informed marketing strategies, optimizing business processes, and identifying growth opportunities to maximize ROI and achieve sustainable business success.",
+    linkedin: "https://www.linkedin.com/in/kaleem-tahir-64064226a/",
+    github: "https://github.com/kaleemtahir",
+  },
 ]
 
 export default function Team() {
