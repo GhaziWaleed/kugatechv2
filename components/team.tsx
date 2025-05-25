@@ -10,7 +10,7 @@ const teamMembers = [
   {
     name: "Ali Goreja",
     role: "Cloud Engineer",
-    image: "/goreja_1.png", // Update this path to your actual image
+    image: "/goreja_1.png", // 1Update this path to your actual image
     shortBio: "10+ years of experience in software development and entrepreneurship.",
     fullBio:
       "10+ years of experience in software development and entrepreneurship, driving innovation and building successful products. Proven ability to lead cross-functional teams and navigate complex technical challenges. Expertise spans the full software development lifecycle, from concept to launch and beyond.",
