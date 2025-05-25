@@ -5,27 +5,27 @@ import Image from "next/image"
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Mobile first approach E-Commerce Platform",
     description: "A full-featured online shopping platform with payment integration and inventory management.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/ecommerce.jpg?height=600&width=800",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
   },
   {
     title: "Healthcare Management System",
     description: "A comprehensive solution for managing patient records, appointments, and billing.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/healthcare.jpg?height=600&width=800",
     tags: ["Angular", "Express", "PostgreSQL", "Docker"],
   },
   {
-    title: "Real Estate Marketplace",
+    title: "Augmented Reality Dimension measuring app",
     description: "A platform connecting property buyers, sellers, and agents with advanced search capabilities.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/AR-app.png?height=600&width=800",
     tags: ["Next.js", "GraphQL", "AWS", "Tailwind CSS"],
   },
   {
-    title: "Financial Analytics Dashboard",
+    title: "Fintech Dev and Quality Assurance",
     description: "Interactive data visualization tools for financial analysis and reporting.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/jc.png?height=600&width=800",
     tags: ["Vue.js", "Python", "D3.js", "FastAPI"],
   },
 ]
@@ -35,7 +35,7 @@ export default function Projects() {
     <section id="projects" className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left div - Project blocks */}
+          {/* 2Left div - Project blocks */}
           <div className="lg:w-2/3 order-2 lg:order-1">
             <div className="flex flex-col space-y-6">
               {projects.map((project, index) => (
