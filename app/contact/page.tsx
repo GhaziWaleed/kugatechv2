@@ -29,7 +29,7 @@ const navItems = [
 function ContactNavbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center py-6">
-      {/* 1Apple-like pill container with blur effect */}
+      {/* Apple-like pill container with blur effect */}
       <div className="rounded-full bg-black/30 backdrop-blur-md border border-white/10 px-2 sm:px-6 py-2 sm:py-3 shadow-lg">
         <div className="flex items-center justify-center space-x-0.5 sm:space-x-1 md:space-x-8">
           {navItems.map((item) => (
