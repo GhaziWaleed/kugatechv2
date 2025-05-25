@@ -6,7 +6,6 @@ import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import Navbar from "@/components/navbar"
 import WaveBackground from "@/components/wave-background"
 import Footer from "@/components/footer"
 
@@ -15,6 +14,37 @@ declare global {
   interface Window {
     emailjs: any
   }
+}
+
+// Custom navbar for contact page
+const navItems = [
+  { name: "Home", href: "/#home" },
+  { name: "Services", href: "/#services" },
+  { name: "Process", href: "/#process" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Team", href: "/#team" },
+  { name: "Contact Us", href: "/#contact" },
+]
+
+function ContactNavbar() {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center py-6">
+      {/* Apple-like pill container with blur effect */}
+      <div className="rounded-full bg-black/30 backdrop-blur-md border border-white/10 px-2 sm:px-6 py-2 sm:py-3 shadow-lg">
+        <div className="flex items-center justify-center space-x-0.5 sm:space-x-1 md:space-x-8">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-xs sm:text-sm md:text-base text-white hover:text-[#30BAAF] transition-colors px-1.5 sm:px-3 py-1 rounded-full"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
+  )
 }
 
 export default function ContactPage() {
@@ -62,15 +92,22 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen">
       <WaveBackground />
-      <Navbar />
+      <ContactNavbar />
 
       <section className="min-h-screen pt-24 pb-16 flex items-center">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center mb-12">
-            <Link href="/" className="flex items-center text-[#30BAAF] hover:text-white transition-colors mb-8">
-              <ArrowLeft className="mr-2 h-5 w-5" />
-              <span>Back to Home</span>
-            </Link>
+            {/* Styled Back to Home button with pill design */}
+            <div className="mb-8">
+              <Link
+                href="/"
+                className="inline-flex items-center bg-black/30 backdrop-blur-md border border-[#30BAAF]/30 hover:border-[#30BAAF]/60 text-[#30BAAF] hover:text-white hover:bg-[#30BAAF]/20 transition-all duration-300 px-6 py-3 rounded-full shadow-lg hover:shadow-[#30BAAF]/20"
+              >
+                <ArrowLeft className="mr-2 h-5 w-5" />
+                <span className="font-medium">Back to Home</span>
+              </Link>
+            </div>
+
             <motion.h1
               className="text-4xl md:text-5xl font-bold text-white mb-4 text-center"
               initial={{ opacity: 0, y: 20 }}
