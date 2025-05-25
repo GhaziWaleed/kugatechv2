@@ -35,7 +35,7 @@ export default function Projects() {
     <section id="projects" className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* 2Left div - Project blocks */}
+          {/* Left div - Project blocks */}
           <div className="lg:w-2/3 order-2 lg:order-1">
             <div className="flex flex-col space-y-6">
               {projects.map((project, index) => (
