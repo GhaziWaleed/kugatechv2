@@ -11,7 +11,7 @@ const projects = [
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
       "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
-    image: "/plugnplaygit.png",
+    image: "/plugnplay.png",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     demoUrl: "https://plugnplay.pk/",
     isConfidential: false,
