@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Ghazi Waleed",
-    role: "I made this Site.",
+    role: "I made this Site",
     image: "/ghazi_1.png", // Update this path to your actual image
     shortBio: "Full-stack developer with expertise in React, Node.js, and cloud architecture.",
     fullBio:
