@@ -6,63 +6,197 @@ import { Code, Layers, Palette, Bot, Share2, Smartphone, LineChart, Cog } from "
 import ServiceCard from "./service-card"
 import { useMobile } from "@/hooks/use-mobile"
 
-// Define technology lists for each service
+// Define technology lists with CDN icons for each service
 const serviceTechnologies = [
   {
     title: "Web Development",
     technologies: {
-      frontend: ["React", "Vue", "Angular", "Next.js", "Nuxt.js", "Svelte"],
-      backend: ["Node.js", "Laravel", "PHP", "Django", "Ruby on Rails", "Express.js"],
+      frontend: [
+        { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Vue", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+        {
+          name: "Angular",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        },
+        { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+        { name: "Nuxt.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" },
+        { name: "Svelte", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
+      ],
+      backend: [
+        { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" },
+        { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+        { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+        {
+          name: "Ruby on Rails",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg",
+        },
+        { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+      ],
     },
   },
   {
     title: "Full Stack App Development",
     technologies: {
-      frontend: ["React", "Vue", "Angular", "Svelte", "Next.js"],
-      backend: ["Node.js", "Express", "NestJS", "Django", "Spring Boot"],
-      database: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis"],
+      frontend: [
+        { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Vue", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+        {
+          name: "Angular",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        },
+        { name: "Svelte", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
+        { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      ],
+      backend: [
+        { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+        { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+        { name: "ASP.NET", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
+      ],
+      database: [
+        { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+        {
+          name: "PostgreSQL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        },
+        { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+        { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+        { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+      ],
+      others: [
+        { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      ],
     },
   },
   {
     title: "UI/UX Design",
     technologies: {
-      design: ["Figma", "Adobe XD", "Sketch", "InVision", "Photoshop", "Illustrator"],
-      prototyping: ["Framer", "Principle", "ProtoPie", "Axure RP", "Marvel"],
+      design: [
+        { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+        { name: "Adobe XD", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg" },
+        { name: "Sketch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sketch/sketch-original.svg" },
+        { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" },
+        {
+          name: "Illustrator",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg",
+        },
+      ],
+      prototyping: [
+        { name: "Framer", icon: "https://www.framer.com/images/favicons/favicon.svg" },
+        { name: "InVision", icon: "https://cdn.worldvectorlogo.com/logos/invision.svg" },
+      ],
     },
   },
   {
     title: "AI and Automation",
     technologies: {
-      ai: ["TensorFlow", "PyTorch", "OpenAI API", "Hugging Face", "scikit-learn", "NLTK"],
-      automation: ["Zapier", "n8n", "Make", "Power Automate", "UiPath", "Ansible"],
+      ai: [
+        {
+          name: "TensorFlow",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+        },
+        { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+        { name: "OpenAI", icon: "https://openai.com/favicon.ico" },
+        { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      ],
+      automation: [
+        { name: "Zapier", icon: "https://cdn.worldvectorlogo.com/logos/zapier.svg" },
+        { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      ],
     },
   },
   {
     title: "Social Media Marketing & SEO",
     technologies: {
-      marketing: ["Google Ads", "Facebook Ads", "Instagram", "LinkedIn", "TikTok", "Twitter"],
-      seo: ["Google Analytics", "SEMrush", "Ahrefs", "Moz", "Screaming Frog", "Yoast SEO"],
+      marketing: [
+        { name: "Google Ads", icon: "https://cdn.worldvectorlogo.com/logos/google-ads-2.svg" },
+        { name: "Facebook", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" },
+        { name: "Instagram", icon: "https://cdn.worldvectorlogo.com/logos/instagram-2016-5.svg" },
+        { name: "LinkedIn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
+        { name: "TikTok", icon: "https://cdn.worldvectorlogo.com/logos/tiktok-icon.svg" },
+        { name: "Twitter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
+      ],
+      seo: [
+        { name: "Google Analytics", icon: "https://cdn.worldvectorlogo.com/logos/google-analytics-4.svg" },
+        { name: "SEMrush", icon: "https://cdn.worldvectorlogo.com/logos/semrush.svg" },
+      ],
     },
   },
   {
     title: "Mobile App Development",
     technologies: {
-      crossPlatform: ["React Native", "Flutter", "Ionic", "Xamarin", "Capacitor"],
-      native: ["Swift (iOS)", "Kotlin (Android)", "SwiftUI", "Jetpack Compose"],
+      crossPlatform: [
+        { name: "React Native", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
+        { name: "Ionic", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" },
+        { name: "Xamarin", icon: "https://cdn.worldvectorlogo.com/logos/xamarin.svg" },
+      ],
+      native: [
+        { name: "Swift", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" },
+        { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" },
+        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+      ],
     },
   },
   {
     title: "Business Analysis",
     technologies: {
-      tools: ["Tableau", "Power BI", "JIRA", "Confluence", "Trello", "Notion"],
-      methodologies: ["Agile", "Scrum", "Lean", "Six Sigma", "Kanban", "Waterfall"],
+      tools: [
+        { name: "Tableau", icon: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" },
+        { name: "Power BI", icon: "https://cdn.worldvectorlogo.com/logos/power-bi.svg" },
+        { name: "JIRA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" },
+        {
+          name: "Confluence",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/confluence/confluence-original.svg",
+        },
+        { name: "Trello", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg" },
+        { name: "Notion", icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg" },
+      ],
+      methodologies: [
+        { name: "Agile", icon: "https://cdn.worldvectorlogo.com/logos/agile.svg" },
+        { name: "Scrum", icon: "https://cdn.worldvectorlogo.com/logos/scrum-1.svg" },
+        { name: "Lean", icon: "https://cdn.worldvectorlogo.com/logos/lean-startup.svg" },
+        { name: "Kanban", icon: "https://cdn.worldvectorlogo.com/logos/kanban.svg" },
+      ],
     },
   },
   {
     title: "Other Software Services",
     technologies: {
-      cloud: ["AWS", "Azure", "Google Cloud", "Vercel", "Netlify", "DigitalOcean"],
-      devOps: ["Docker", "Kubernetes", "Jenkins", "GitHub Actions", "CircleCI", "Terraform"],
+      cloud: [
+        {
+          name: "AWS",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+        },
+        { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
+        {
+          name: "Google Cloud",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+        },
+        { name: "Vercel", icon: "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico" },
+        { name: "Netlify", icon: "https://cdn.worldvectorlogo.com/logos/netlify.svg" },
+        {
+          name: "DigitalOcean",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
+        },
+      ],
+      devOps: [
+        { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        {
+          name: "Kubernetes",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+        },
+        { name: "Jenkins", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" },
+        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+        { name: "GitLab", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
+        {
+          name: "Terraform",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+        },
+      ],
     },
   },
 ]
@@ -169,13 +303,25 @@ export default function Services() {
                     {services[hoveredServiceIndex].title} Technologies
                   </h3>
                   {Object.entries(serviceTechnologies[hoveredServiceIndex].technologies).map(([category, techs]) => (
-                    <div key={category} className="mb-4 last:mb-0">
-                      <h4 className="text-[#30BAAF] font-medium capitalize mb-2">{category}:</h4>
-                      <div className="flex flex-wrap gap-2">
+                    <div key={category} className="mb-6 last:mb-0">
+                      <h4 className="text-[#30BAAF] font-medium capitalize mb-3 text-lg">{category}:</h4>
+                      <div className="flex flex-wrap gap-3">
                         {techs.map((tech) => (
-                          <span key={tech} className="bg-[#30BAAF]/10 text-white px-3 py-1 rounded-full text-sm">
-                            {tech}
-                          </span>
+                          <div
+                            key={tech.name}
+                            className="flex items-center gap-2 bg-[#30BAAF]/10 hover:bg-[#30BAAF]/20 text-white px-3 py-2 rounded-full text-sm transition-all duration-200 border border-[#30BAAF]/20"
+                          >
+                            <img
+                              src={tech.icon || "/placeholder.svg"}
+                              alt={tech.name}
+                              className="w-4 h-4 object-contain"
+                              onError={(e) => {
+                                // Fallback to a generic icon if CDN fails
+                                e.currentTarget.style.display = "none"
+                              }}
+                            />
+                            <span>{tech.name}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -239,13 +385,25 @@ export default function Services() {
                 </button>
               </div>
               {Object.entries(serviceTechnologies[hoveredServiceIndex].technologies).map(([category, techs]) => (
-                <div key={category} className="mb-4 last:mb-0">
-                  <h4 className="text-[#30BAAF] font-medium capitalize mb-2">{category}:</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div key={category} className="mb-6 last:mb-0">
+                  <h4 className="text-[#30BAAF] font-medium capitalize mb-3 text-lg">{category}:</h4>
+                  <div className="flex flex-wrap gap-3">
                     {techs.map((tech) => (
-                      <span key={tech} className="bg-[#30BAAF]/10 text-white px-3 py-1 rounded-full text-sm">
-                        {tech}
-                      </span>
+                      <div
+                        key={tech.name}
+                        className="flex items-center gap-2 bg-[#30BAAF]/10 hover:bg-[#30BAAF]/20 text-white px-3 py-2 rounded-full text-sm transition-all duration-200 border border-[#30BAAF]/20"
+                      >
+                        <img
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          className="w-4 h-4 object-contain"
+                          onError={(e) => {
+                            // Fallback to a generic icon if CDN fails
+                            e.currentTarget.style.display = "none"
+                          }}
+                        />
+                        <span>{tech.name}</span>
+                      </div>
                     ))}
                   </div>
                 </div>
