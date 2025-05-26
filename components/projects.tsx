@@ -11,7 +11,7 @@ const projects = [
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
       "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/plugnplay.png?height=600&width=800",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     demoUrl: "https://plugnplay.pk/",
     isConfidential: false,
@@ -21,7 +21,7 @@ const projects = [
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
       "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/jdm-traders.png?height=600&width=800",
     tags: ["React", "PHP"],
     demoUrl: "https://jdmtraders.co.uk/",
     isConfidential: false,
@@ -42,7 +42,7 @@ const projects = [
     description: "Instantly measure real-world objects and distances using your phone's camera with this AR app. Simply point, tap, and get dimensions overlaid on your screen.",
     fullDescription:
       "Transforms your smartphone or tablet into a virtual measuring tape with this innovative Augmented Reality app. By leveraging your device's camera and advanced AR technology, you can quickly and easily measure the length, width, height, area, and even volume of objects and spaces around you. Simply point your camera, tap to set measurement points on the real world as seen through your screen, and the app will overlay accurate digital measurements in real-time. Ideal for quick estimations, DIY projects, interior design planning, and more.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/AR-Measure.png?height=600&width=800",
     tags: ["Next.js", "React", "Gemini-API", "Lucide"],
     demoUrl: "https://radiator-measuring.netlify.app/",
     isConfidential: false,
