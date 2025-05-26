@@ -11,7 +11,7 @@ const projects = [
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
       "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
-    image: "/plugnplay.png",
+    image: "/plugnplay-screenshot.png",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     demoUrl: "https://plugnplay.pk/",
     isConfidential: false,
@@ -221,87 +221,89 @@ export default function Projects() {
                 <div className="flex-1 flex">
                   {/* Left Side - Project Details */}
                   <motion.div
-                    className="w-1/3 p-6 border-r border-[#30BAAF]/20 overflow-y-auto"
+                    className="w-1/3 border-r border-[#30BAAF]/20 flex flex-col h-full"
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="space-y-6">
-                      {/* Project Image */}
-                      <div className="relative h-48 rounded-xl overflow-hidden">
-                        <Image
-                          src={projects[selectedProject].image || "/placeholder.svg"}
-                          alt={projects[selectedProject].title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-
-                      {/* Description */}
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Project Overview</h3>
-                        <p className="text-gray-300 leading-relaxed">
-                          {showDetails
-                            ? projects[selectedProject].fullDescription
-                            : projects[selectedProject].description}
-                        </p>
-                        <button
-                          onClick={toggleDetails}
-                          className="text-[#30BAAF] hover:text-white transition-colors text-sm mt-2 flex items-center"
-                        >
-                          <Info className="h-3 w-3 mr-1" />
-                          {showDetails ? "Show less" : "Click to see more details"}
-                        </button>
-                      </div>
-
-                      {/* Technologies */}
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Technologies Used</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {projects[selectedProject].tags.map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="bg-[#30BAAF]/20 text-[#30BAAF] px-3 py-1 rounded-full text-sm border border-[#30BAAF]/30"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                    <div className="p-4 overflow-y-auto h-full">
+                      <div className="space-y-4">
+                        {/* Project Image - Smaller */}
+                        <div className="relative h-32 rounded-lg overflow-hidden">
+                          <Image
+                            src={projects[selectedProject].image || "/placeholder.svg"}
+                            alt={projects[selectedProject].title}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
-                      </div>
 
-                      {/* Action Buttons */}
-                      <div className="space-y-3">
-                        {projects[selectedProject].isConfidential ? (
-                          <div className="w-full bg-red-500/20 border border-red-500/50 text-red-200 py-3 px-4 rounded-lg text-center">
-                            <p className="text-sm">Live demo not available for confidential projects</p>
-                          </div>
-                        ) : (
+                        {/* Description - More Compact */}
+                        <div>
+                          <h3 className="text-lg font-bold text-white mb-2">Project Overview</h3>
+                          <p className="text-gray-300 leading-relaxed text-sm">
+                            {showDetails
+                              ? projects[selectedProject].fullDescription
+                              : projects[selectedProject].description}
+                          </p>
                           <button
-                            onClick={() => openFullSite(projects[selectedProject].demoUrl)}
-                            className="w-full bg-[#30BAAF] hover:bg-[#2aa69b] text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                            onClick={toggleDetails}
+                            className="text-[#30BAAF] hover:text-white transition-colors text-xs mt-1 flex items-center"
                           >
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Open in New Tab
+                            <Info className="h-3 w-3 mr-1" />
+                            {showDetails ? "Show less" : "Click to see more details"}
                           </button>
-                        )}
-                      </div>
+                        </div>
 
-                      {/* Additional Info */}
-                      <div className="bg-[#30BAAF]/10 rounded-xl p-4 border border-[#30BAAF]/20">
-                        <h4 className="text-[#30BAAF] font-medium mb-2">
-                          {projects[selectedProject].isConfidential
-                            ? "Confidential Project"
-                            : !projects[selectedProject].canEmbed
-                              ? "Screenshot Preview"
-                              : "Live Preview"}
-                        </h4>
-                        <p className="text-gray-300 text-sm">
-                          {projects[selectedProject].isConfidential
-                            ? "This project contains sensitive information and cannot be displayed publicly. Detailed screenshots and demos are available during private consultation sessions."
-                            : !projects[selectedProject].canEmbed
-                              ? "This website has security settings that prevent embedding. A screenshot is shown instead. Click 'Open in New Tab' to view the live site."
-                              : "The website preview on the right shows the actual live project. You can interact with it directly or open it in a new tab for the full experience."}
-                        </p>
+                        {/* Technologies - More Compact */}
+                        <div>
+                          <h3 className="text-lg font-bold text-white mb-2">Technologies Used</h3>
+                          <div className="flex flex-wrap gap-1">
+                            {projects[selectedProject].tags.map((tag, tagIndex) => (
+                              <span
+                                key={tagIndex}
+                                className="bg-[#30BAAF]/20 text-[#30BAAF] px-2 py-1 rounded-full text-xs border border-[#30BAAF]/30"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Action Buttons - More Compact */}
+                        <div className="space-y-2">
+                          {projects[selectedProject].isConfidential ? (
+                            <div className="w-full bg-red-500/20 border border-red-500/50 text-red-200 py-2 px-3 rounded-lg text-center">
+                              <p className="text-xs">Live demo not available for confidential projects</p>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => openFullSite(projects[selectedProject].demoUrl)}
+                              className="w-full bg-[#30BAAF] hover:bg-[#2aa69b] text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm"
+                            >
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                              Open in New Tab
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Additional Info - More Compact */}
+                        <div className="bg-[#30BAAF]/10 rounded-lg p-3 border border-[#30BAAF]/20">
+                          <h4 className="text-[#30BAAF] font-medium mb-1 text-sm">
+                            {projects[selectedProject].isConfidential
+                              ? "Confidential Project"
+                              : !projects[selectedProject].canEmbed
+                                ? "Screenshot Preview"
+                                : "Live Preview"}
+                          </h4>
+                          <p className="text-gray-300 text-xs leading-relaxed">
+                            {projects[selectedProject].isConfidential
+                              ? "This project contains sensitive information and cannot be displayed publicly. Detailed screenshots and demos are available during private consultation sessions."
+                              : !projects[selectedProject].canEmbed
+                                ? "This website has security settings that prevent embedding. A screenshot is shown instead. Click 'Open in New Tab' to view the live site."
+                                : "The website preview on the right shows the actual live project. You can interact with it directly or open it in a new tab for the full experience."}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -344,7 +346,7 @@ export default function Projects() {
                             </div>
                           </div>
                         </div>
-                      ) : !projects[selectedProject].canEmbed ? (
+                      ) : projects[selectedProject].canEmbed === false ? (
                         // Screenshot Display for sites that can't be embedded
                         <div className="h-full flex flex-col">
                           {/* Browser Header */}
@@ -374,6 +376,7 @@ export default function Projects() {
                               src={
                                 projects[selectedProject].screenshotUrl ||
                                 projects[selectedProject].image ||
+                                "/placeholder.svg" ||
                                 "/placeholder.svg"
                               }
                               alt={`${projects[selectedProject].title} Screenshot`}
@@ -400,7 +403,7 @@ export default function Projects() {
                           </div>
                         </div>
                       ) : (
-                        // Live Website Preview (existing code for embeddable sites)
+                        // Live Website Preview for embeddable sites
                         <>
                           {/* Browser Header */}
                           <div className="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
