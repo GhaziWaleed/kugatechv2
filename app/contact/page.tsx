@@ -72,7 +72,7 @@ export default function ContactPage() {
                 className="inline-flex items-center bg-gradient-to-r from-[#30BAAF] to-[#2aa69b] hover:from-[#2aa69b] hover:to-[#30BAAF] text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#30BAAF]/30 px-8 py-4 rounded-full"
               >
                 <ArrowLeft className="mr-2 h-5 w-5" />
-                <span className="font-medium">Back to Home1</span>
+                <span className="font-medium">Back to Home</span>
               </Link>
             </div>
 
