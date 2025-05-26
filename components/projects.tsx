@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState } from "react"
-import { ExternalLink, X, Maximize2, Info } from "lucide-react"
+import { ExternalLink, X, Maximize2, Info, AlertTriangle } from "lucide-react"
 
 const projects = [
   {
@@ -11,12 +11,14 @@ const projects = [
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
       "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
-    image: "/plugnplay.png?height=600&width=800",
+    image: "/plugnplay-screenshot.png",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     demoUrl: "https://plugnplay.pk/",
     isConfidential: false,
+    canEmbed: false, // This site blocks iframe embedding
+    screenshotUrl: "/plugnplay-screenshot.png",
   },
-    {
+  {
     title: "Platform to provide Car services/Agents",
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
@@ -25,6 +27,7 @@ const projects = [
     tags: ["React", "PHP"],
     demoUrl: "https://jdmtraders.co.uk/",
     isConfidential: false,
+    canEmbed: true, // This site allows iframe embedding
   },
   {
     title: "Healthcare Management System",
@@ -39,13 +42,15 @@ const projects = [
   },
   {
     title: "Augmented Reality Dimension measuring app",
-    description: "Instantly measure real-world objects and distances using your phone's camera with this AR app. Simply point, tap, and get dimensions overlaid on your screen.",
+    description:
+      "Instantly measure real-world objects and distances using your phone's camera with this AR app. Simply point, tap, and get dimensions overlaid on your screen.",
     fullDescription:
       "Transforms your smartphone or tablet into a virtual measuring tape with this innovative Augmented Reality app. By leveraging your device's camera and advanced AR technology, you can quickly and easily measure the length, width, height, area, and even volume of objects and spaces around you. Simply point your camera, tap to set measurement points on the real world as seen through your screen, and the app will overlay accurate digital measurements in real-time. Ideal for quick estimations, DIY projects, interior design planning, and more.",
     image: "/AR-Measure.png?height=600&width=800",
     tags: ["Next.js", "React", "Gemini-API", "Lucide"],
     demoUrl: "https://radiator-measuring.netlify.app/",
     isConfidential: false,
+    canEmbed: true, // This site allows iframe embedding
   },
   {
     title: "Financial E-Wallet App",
@@ -63,10 +68,12 @@ const projects = [
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [showDetails, setShowDetails] = useState(false)
+  const [iframeError, setIframeError] = useState<{ [key: number]: boolean }>({})
 
   const openProject = (index: number) => {
     setSelectedProject(index)
     setShowDetails(false)
+    setIframeError({}) // Reset iframe errors when opening new project
   }
 
   const closeProject = () => {
@@ -80,6 +87,10 @@ export default function Projects() {
 
   const openFullSite = (url: string) => {
     window.open(url, "_blank")
+  }
+
+  const handleIframeError = (projectIndex: number) => {
+    setIframeError((prev) => ({ ...prev, [projectIndex]: true }))
   }
 
   return (
@@ -278,18 +289,24 @@ export default function Projects() {
                       {/* Additional Info */}
                       <div className="bg-[#30BAAF]/10 rounded-xl p-4 border border-[#30BAAF]/20">
                         <h4 className="text-[#30BAAF] font-medium mb-2">
-                          {projects[selectedProject].isConfidential ? "Confidential Project" : "Live Preview"}
+                          {projects[selectedProject].isConfidential
+                            ? "Confidential Project"
+                            : !projects[selectedProject].canEmbed
+                              ? "Screenshot Preview"
+                              : "Live Preview"}
                         </h4>
                         <p className="text-gray-300 text-sm">
                           {projects[selectedProject].isConfidential
                             ? "This project contains sensitive information and cannot be displayed publicly. Detailed screenshots and demos are available during private consultation sessions."
-                            : "The website preview on the right shows the actual live project. You can interact with it directly or open it in a new tab for the full experience."}
+                            : !projects[selectedProject].canEmbed
+                              ? "This website has security settings that prevent embedding. A screenshot is shown instead. Click 'Open in New Tab' to view the live site."
+                              : "The website preview on the right shows the actual live project. You can interact with it directly or open it in a new tab for the full experience."}
                         </p>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Right Side - Live Website Preview or Confidential Image */}
+                  {/* Right Side - Live Website Preview, Screenshot, or Confidential Image */}
                   <motion.div
                     className="flex-1 p-6"
                     initial={{ x: 50, opacity: 0 }}
@@ -304,7 +321,8 @@ export default function Projects() {
                             <Image
                               src={
                                 projects[selectedProject].confidentialImage ||
-                                "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL"
+                                "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL" ||
+                                "/placeholder.svg"
                               }
                               alt="Confidential Project"
                               fill
@@ -326,8 +344,63 @@ export default function Projects() {
                             </div>
                           </div>
                         </div>
+                      ) : !projects[selectedProject].canEmbed ? (
+                        // Screenshot Display for sites that can't be embedded
+                        <div className="h-full flex flex-col">
+                          {/* Browser Header */}
+                          <div className="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <div className="flex space-x-1">
+                                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              </div>
+                              <div className="bg-white rounded px-3 py-1 text-sm text-gray-600 border flex-1 max-w-md ml-4">
+                                {projects[selectedProject].demoUrl}
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => openFullSite(projects[selectedProject].demoUrl)}
+                              className="text-gray-600 hover:text-gray-800 transition-colors"
+                              title="Open in new tab"
+                            >
+                              <Maximize2 className="h-4 w-4" />
+                            </button>
+                          </div>
+
+                          {/* Screenshot Display */}
+                          <div className="flex-1 relative">
+                            <Image
+                              src={
+                                projects[selectedProject].screenshotUrl ||
+                                projects[selectedProject].image ||
+                                "/placeholder.svg"
+                              }
+                              alt={`${projects[selectedProject].title} Screenshot`}
+                              fill
+                              className="object-cover"
+                            />
+
+                            {/* Overlay with explanation */}
+                            <div className="absolute top-4 right-4 bg-orange-500/90 text-white px-3 py-2 rounded-lg text-sm flex items-center">
+                              <AlertTriangle className="h-4 w-4 mr-2" />
+                              Screenshot Preview
+                            </div>
+
+                            {/* Click overlay to open in new tab */}
+                            <div
+                              className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all cursor-pointer flex items-center justify-center group"
+                              onClick={() => openFullSite(projects[selectedProject].demoUrl)}
+                            >
+                              <div className="bg-[#30BAAF] text-white px-6 py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center">
+                                <ExternalLink className="h-5 w-5 mr-2" />
+                                Click to view live site
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       ) : (
-                        // Live Website Preview (existing code)
+                        // Live Website Preview (existing code for embeddable sites)
                         <>
                           {/* Browser Header */}
                           <div className="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
@@ -358,6 +431,7 @@ export default function Projects() {
                               title={`${projects[selectedProject].title} Preview`}
                               sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
                               loading="lazy"
+                              onError={() => handleIframeError(selectedProject)}
                             />
                           </div>
                         </>
