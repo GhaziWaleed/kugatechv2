@@ -2,67 +2,237 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Code, Layers, Palette, Bot, Share2, Smartphone, LineChart, Cog } from "lucide-react"
+import {
+  Code,
+  Layers,
+  Palette,
+  Bot,
+  Share2,
+  Smartphone,
+  LineChart,
+  Cog,
+  Cloud,
+  BarChart3,
+  Settings,
+  MessageCircle,
+  Monitor
+} from "lucide-react"
 import ServiceCard from "./service-card"
 import { useMobile } from "@/hooks/use-mobile"
+// Import only the most reliable technology icons
+import {
+  SiReact,
+  SiVuedotjs,
+  SiAngular,
+  SiNextdotjs,
+  SiNuxtdotjs,
+  SiSvelte,
+  SiNodedotjs,
+  SiExpress,
+  SiDjango,
+  SiRubyonrails,
+  SiLaravel,
+  SiPhp,
+  SiDotnet,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiFirebase,
+  SiRedis,
+  SiGraphql,
+  SiGit,
+  SiDocker,
+  SiFigma,
+  SiAdobexd,
+  SiSketch,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiFramer,
+  SiTensorflow,
+  SiPytorch,
+  SiOpenai,
+  SiPython,
+  SiZapier,
+  SiGoogle,
+  SiFacebook,
+  SiInstagram,
+  SiLinkedin,
+  SiTiktok,
+  SiGoogleanalytics,
+  SiFlutter,
+  SiIonic,
+  SiSwift,
+  SiKotlin,
+  SiTableau,
+  SiJira,
+  SiConfluence,
+  SiTrello,
+  SiNotion,
+  SiAmazonwebservices,
+  SiGooglecloud,
+  SiVercel,
+  SiNetlify,
+  SiDigitalocean,
+  SiKubernetes,
+  SiJenkins,
+  SiGithubactions,
+  SiCircleci,
+  SiTerraform
+} from "react-icons/si"
 
-// Define technology lists for each service
+// Define technology lists with icons and colors for each service
 const serviceTechnologies = [
   {
     title: "Web Development",
     technologies: {
-      frontend: ["React", "Vue", "Angular", "Next.js", "Nuxt.js", "Svelte"],
-      backend: ["Node.js", "Laravel", "PHP", "Django", "Ruby on Rails", "Express.js"],
+      frontend: [
+        { name: "React", icon: SiReact, color: "#61DAFB" },
+        { name: "Vue", icon: SiVuedotjs, color: "#4FC08D" },
+        { name: "Angular", icon: SiAngular, color: "#DD0031" },
+        { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+        { name: "Nuxt.js", icon: SiNuxtdotjs, color: "#00DC82" },
+        { name: "Svelte", icon: SiSvelte, color: "#FF3E00" },
+      ],
+      backend: [
+        { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+        { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
+        { name: "PHP", icon: SiPhp, color: "#777BB4" },
+        { name: "Django", icon: SiDjango, color: "#092E20" },
+        { name: "Ruby on Rails", icon: SiRubyonrails, color: "#CC0000" },
+        { name: "Express.js", icon: SiExpress, color: "#000000" },
+      ],
     },
   },
   {
     title: "Full Stack App Development",
     technologies: {
-      frontend: ["React", "Vue", "Angular", "Svelte", "Next.js"],
-      backend: ["Node.js", "Express", "NestJS", "Django", "Spring Boot"],
-      database: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis"],
+      frontend: [
+        { name: "React", icon: SiReact, color: "#61DAFB" },
+        { name: "Vue", icon: SiVuedotjs, color: "#4FC08D" },
+        { name: "Angular", icon: SiAngular, color: "#DD0031" },
+        { name: "Svelte", icon: SiSvelte, color: "#FF3E00" },
+        { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+      ],
+      backend: [
+        { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+        { name: "Express", icon: SiExpress, color: "#000000" },
+        { name: "Django", icon: SiDjango, color: "#092E20" },
+        { name: "ASP.NET", icon: SiDotnet, color: "#512BD4" },
+      ],
+      database: [
+        { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+        { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
+        { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+        { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+        { name: "Redis", icon: SiRedis, color: "#DC382D" },
+      ],
+      others: [
+        { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
+        { name: "Git", icon: SiGit, color: "#F05032" },
+        { name: "Docker", icon: SiDocker, color: "#2496ED" },
+      ],
     },
   },
   {
     title: "UI/UX Design",
     technologies: {
-      design: ["Figma", "Adobe XD", "Sketch", "InVision", "Photoshop", "Illustrator"],
-      prototyping: ["Framer", "Principle", "ProtoPie", "Axure RP", "Marvel"],
+      design: [
+        { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+        { name: "Adobe XD", icon: SiAdobexd, color: "#FF61F6" },
+        { name: "Sketch", icon: SiSketch, color: "#F7B500" },
+        { name: "Photoshop", icon: SiAdobephotoshop, color: "#31A8FF" },
+        { name: "Illustrator", icon: SiAdobeillustrator, color: "#FF9A00" },
+      ],
+      prototyping: [
+        { name: "Framer", icon: SiFramer, color: "#0055FF" },
+        { name: "Adobe XD", icon: SiAdobexd, color: "#FF61F6" },
+      ],
     },
   },
   {
     title: "AI and Automation",
     technologies: {
-      ai: ["TensorFlow", "PyTorch", "OpenAI API", "Hugging Face", "scikit-learn", "NLTK"],
-      automation: ["Zapier", "n8n", "Make", "Power Automate", "UiPath", "Ansible"],
+      ai: [
+        { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
+        { name: "PyTorch", icon: SiPytorch, color: "#EE4C2C" },
+        { name: "OpenAI API", icon: SiOpenai, color: "#412991" },
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+      ],
+      automation: [
+        { name: "Zapier", icon: SiZapier, color: "#FF4A00" },
+        { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+      ],
     },
   },
   {
     title: "Social Media Marketing & SEO",
     technologies: {
-      marketing: ["Google Ads", "Facebook Ads", "Instagram", "LinkedIn", "TikTok", "Twitter"],
-      seo: ["Google Analytics", "SEMrush", "Ahrefs", "Moz", "Screaming Frog", "Yoast SEO"],
+      marketing: [
+        { name: "Google Ads", icon: SiGoogle, color: "#4285F4" },
+        { name: "Facebook Ads", icon: SiFacebook, color: "#1877F2" },
+        { name: "Instagram", icon: SiInstagram, color: "#E4405F" },
+        { name: "LinkedIn", icon: SiLinkedin, color: "#0A66C2" },
+        { name: "TikTok", icon: SiTiktok, color: "#000000" },
+        { name: "Twitter", icon: MessageCircle, color: "#1DA1F2" },
+      ],
+      seo: [{ name: "Google Analytics", icon: SiGoogleanalytics, color: "#E37400" }],
     },
   },
   {
     title: "Mobile App Development",
     technologies: {
-      crossPlatform: ["React Native", "Flutter", "Ionic", "Xamarin", "Capacitor"],
-      native: ["Swift (iOS)", "Kotlin (Android)", "SwiftUI", "Jetpack Compose"],
+      crossPlatform: [
+        { name: "React Native", icon: SiReact, color: "#61DAFB" },
+        { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+        { name: "Ionic", icon: SiIonic, color: "#3880FF" },
+        { name: "Xamarin", icon: Monitor, color: "#3498DB" },
+      ],
+      native: [
+        { name: "Swift (iOS)", icon: SiSwift, color: "#FA7343" },
+        { name: "Kotlin (Android)", icon: SiKotlin, color: "#7F52FF" },
+      ],
     },
   },
   {
     title: "Business Analysis",
     technologies: {
-      tools: ["Tableau", "Power BI", "JIRA", "Confluence", "Trello", "Notion"],
-      methodologies: ["Agile", "Scrum", "Lean", "Six Sigma", "Kanban", "Waterfall"],
+      tools: [
+        { name: "Tableau", icon: SiTableau, color: "#E97627" },
+        { name: "Power BI", icon: BarChart3, color: "#F2C811" },
+        { name: "JIRA", icon: SiJira, color: "#0052CC" },
+        { name: "Confluence", icon: SiConfluence, color: "#172B4D" },
+        { name: "Trello", icon: SiTrello, color: "#0079BF" },
+        { name: "Notion", icon: SiNotion, color: "#000000" },
+      ],
+      methodologies: [
+        { name: "Agile", icon: Settings, color: "#30BAAF" },
+        { name: "Scrum", icon: Settings, color: "#30BAAF" },
+        { name: "Lean", icon: Settings, color: "#30BAAF" },
+        { name: "Six Sigma", icon: Settings, color: "#30BAAF" },
+        { name: "Kanban", icon: Settings, color: "#30BAAF" },
+        { name: "Waterfall", icon: Settings, color: "#30BAAF" },
+      ],
     },
   },
   {
     title: "Other Software Services",
     technologies: {
-      cloud: ["AWS", "Azure", "Google Cloud", "Vercel", "Netlify", "DigitalOcean"],
-      devOps: ["Docker", "Kubernetes", "Jenkins", "GitHub Actions", "CircleCI", "Terraform"],
+      cloud: [
+        { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
+        { name: "Azure", icon: Cloud, color: "#0078D4" },
+        { name: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
+        { name: "Vercel", icon: SiVercel, color: "#000000" },
+        { name: "Netlify", icon: SiNetlify, color: "#00C7B7" },
+        { name: "DigitalOcean", icon: SiDigitalocean, color: "#0080FF" },
+      ],
+      devOps: [
+        { name: "Docker", icon: SiDocker, color: "#2496ED" },
+        { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+        { name: "Jenkins", icon: SiJenkins, color: "#D24939" },
+        { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
+        { name: "CircleCI", icon: SiCircleci, color: "#343434" },
+        { name: "Terraform", icon: SiTerraform, color: "#7B42BC" },
+      ],
     },
   },
 ]
@@ -169,14 +339,21 @@ export default function Services() {
                     {services[hoveredServiceIndex].title} Technologies
                   </h3>
                   {Object.entries(serviceTechnologies[hoveredServiceIndex].technologies).map(([category, techs]) => (
-                    <div key={category} className="mb-4 last:mb-0">
-                      <h4 className="text-[#30BAAF] font-medium capitalize mb-2">{category}:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {techs.map((tech) => (
-                          <span key={tech} className="bg-[#30BAAF]/10 text-white px-3 py-1 rounded-full text-sm">
-                            {tech}
-                          </span>
-                        ))}
+                    <div key={category} className="mb-6 last:mb-0">
+                      <h4 className="text-[#30BAAF] font-medium capitalize mb-3 text-lg">{category}:</h4>
+                      <div className="flex flex-wrap gap-3">
+                        {techs.map((tech) => {
+                          const IconComponent = tech.icon
+                          return (
+                            <div
+                              key={tech.name}
+                              className="flex items-center gap-2 bg-[#30BAAF]/10 hover:bg-[#30BAAF]/20 text-white px-3 py-2 rounded-full text-sm transition-all duration-200 border border-[#30BAAF]/20"
+                            >
+                              <IconComponent style={{ color: tech.color }} className="w-4 h-4" />
+                              <span>{tech.name}</span>
+                            </div>
+                          )
+                        })}
                       </div>
                     </div>
                   ))}
@@ -239,14 +416,21 @@ export default function Services() {
                 </button>
               </div>
               {Object.entries(serviceTechnologies[hoveredServiceIndex].technologies).map(([category, techs]) => (
-                <div key={category} className="mb-4 last:mb-0">
-                  <h4 className="text-[#30BAAF] font-medium capitalize mb-2">{category}:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {techs.map((tech) => (
-                      <span key={tech} className="bg-[#30BAAF]/10 text-white px-3 py-1 rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
+                <div key={category} className="mb-6 last:mb-0">
+                  <h4 className="text-[#30BAAF] font-medium capitalize mb-3 text-lg">{category}:</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {techs.map((tech) => {
+                      const IconComponent = tech.icon
+                      return (
+                        <div
+                          key={tech.name}
+                          className="flex items-center gap-2 bg-[#30BAAF]/10 hover:bg-[#30BAAF]/20 text-white px-3 py-2 rounded-full text-sm transition-all duration-200 border border-[#30BAAF]/20"
+                        >
+                          <IconComponent style={{ color: tech.color }} className="w-4 h-4" />
+                          <span>{tech.name}</span>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               ))}
