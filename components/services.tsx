@@ -297,7 +297,7 @@ export default function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute top-0 left-0 right-0 z-[100] bg-black/90 backdrop-blur-md rounded-2xl p-6 border border-[#30BAAF]/20 max-h-[80vh] overflow-auto"
+                  className="absolute top-0 left-0 right-0 z-[100] bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-[#30BAAF]/20 max-h-[80vh] overflow-auto shadow-lg hover:shadow-[#30BAAF]/20"
                 >
                   <h3 className="text-2xl font-bold text-white mb-4">
                     {services[hoveredServiceIndex].title} Technologies
@@ -361,7 +361,7 @@ export default function Services() {
             style={{ pointerEvents: "none" }}
           >
             <div
-              className="bg-black/90 backdrop-blur-md rounded-2xl p-6 border border-[#30BAAF]/20 w-full max-w-md max-h-[80vh] overflow-auto"
+              className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-[#30BAAF]/20 w-full max-w-md max-h-[80vh] overflow-auto shadow-lg hover:shadow-[#30BAAF]/20"
               style={{ pointerEvents: "auto" }}
               onClick={(e) => e.stopPropagation()}
             >
