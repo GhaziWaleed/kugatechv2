@@ -17,14 +17,14 @@ declare global {
 }
 
 // Custom navbar for contact page
-const navItems = [
+ {/*const navItems = [
   { name: "Home", href: "/#home" },
   { name: "Services", href: "/#services" },
   { name: "Process", href: "/#process" },
   { name: "Projects", href: "/#projects" },
   { name: "Team", href: "/#team" },
   { name: "Contact Us", href: "/#contact" },
-]
+]*/}
 
 
 export default function ContactPage() {
