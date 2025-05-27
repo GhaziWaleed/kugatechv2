@@ -98,12 +98,12 @@ export default function Projects() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left div - Project blocks */}
-          <div className="lg:w-2/3 order-2 lg:order-1">
+          <div className="lg:w-2/3 order-2 lg:order-1 relative z-20">
             <div className="flex flex-col space-y-6">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="bg-black/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-[#30BAAF]/20 transition-all cursor-pointer"
+                  className="bg-black/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-[#30BAAF]/20 transition-all cursor-pointer relative z-20"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -157,7 +157,7 @@ export default function Projects() {
           </div>
 
           {/* Right div - Title and description */}
-          <div className="lg:w-1/3 flex flex-col justify-start order-1 lg:order-2 sticky top-24 self-start">
+          <div className="lg:w-1/3 flex flex-col justify-start order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start relative z-10">
             <motion.h2
               className="text-4xl font-bold text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
@@ -324,6 +324,7 @@ export default function Projects() {
                               src={
                                 projects[selectedProject].confidentialImage ||
                                 "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL" ||
+                                "/placeholder.svg" ||
                                 "/placeholder.svg"
                               }
                               alt="Confidential Project"
@@ -376,6 +377,7 @@ export default function Projects() {
                               src={
                                 projects[selectedProject].screenshotUrl ||
                                 projects[selectedProject].image ||
+                                "/placeholder.svg" ||
                                 "/placeholder.svg" ||
                                 "/placeholder.svg"
                               }
