@@ -113,7 +113,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">Our Location</h3>
-                      <p className="text-gray-300">GM Heights, Soan Avenue, Islamabad, Pakistan</p>
+                      <p className="text-gray-300">Office 2, GM Heights, Soan Avenue, Islamabad, Pakistan</p>
                     </div>
                   </div>
 

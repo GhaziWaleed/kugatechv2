@@ -3,67 +3,145 @@
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState } from "react"
-import { ExternalLink, X, Maximize2, Info, AlertTriangle } from "lucide-react"
+import { ExternalLink, X, Maximize2, Info, AlertTriangle, ChevronLeft, ChevronRight } from "lucide-react"
 
 const projects = [
+
   {
-    title: "Mobile first approach E-Commerce Platform",
+    title: "Rock Scan Mobile App",
+    description: "AI-powered rock identification and analysis using camera input and live data.",
+    fullDescription:
+      "Rock Scan is a Flutter-based mobile app that uses AI and computer vision to identify rock types through camera scans. It provides instant geological insights, including rock classification and properties, with offline functionality, a personal rock gallery, and cloud sync via Firebase.",
+    image: "/updateRock.jpeg?height=950&width=800",
+    tags: ["Flutter", "TensorFlow Lite", "Firebase", "REST API", "Computer Vision", "Geology", "Image Recognition"],
+    screenshots: [
+      "/rock1.jpeg",
+      "/rock2.jpeg",
+    ]
+  },
+
+  {
+    title: "Healthcare & EMAR Management System",
+    description: "A HIPAA-compliant system for managing patient records, billing, and EMAR in U.S. healthcare facilities.",
+    fullDescription:
+      "A scalable healthcare system for U.S. clinics, offering patient records, billing, EMAR, and appointment scheduling. It includes medication tracking, real-time reports, and role-based access. Built with Angular on the frontend and ASP.NET with PHP Laravel on the backend for secure, high-performance operations.",
+    image: "/BT.png?height=600&width=400",
+    tags: ["ASP.NET","Laravel","PHP","Angular", "MySQL", "HIPAA", "Docker"],
+    //demoUrl: "https://nextjs.org",
+    isConfidential: true,
+    confidentialImage: "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL",
+  },
+
+  {
+    title: "Shopify-Based E-Commerce Platform",
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
-      "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
+      "A mobile-first Shopify store designed for seamless user experience with integrated payment gateways, custom theme design, and inventory management features.",
     image: "/plugnplay.png",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    tags: ["Shopify", "Liquid", "PHP", "JavaScript", "Stripe", "Responsive Design"],
     demoUrl: "https://plugnplay.pk/",
     isConfidential: false,
     canEmbed: false, // This site blocks iframe embedding
     screenshotUrl: "/plugnplay-screenshot.png",
   },
   {
-    title: "Platform to provide Car services/Agents",
+    title: "WordPress Automotive Services Marketplace",
     description: "A full-featured online shopping platform with payment integration and inventory management.",
     fullDescription:
-      "This comprehensive e-commerce solution features user authentication, product catalog management, shopping cart functionality, secure payment processing with Stripe, order tracking, inventory management, and an admin dashboard. Built with React and Node.js for optimal performance.",
+      "A service listing and e-commerce platform built on WordPress for car agents, with payment integration, booking form, and service filters.",
     image: "/jdm-traders.png?height=600&width=800",
-    tags: ["React", "PHP"],
+    tags: ["WordPress", "WooCommerce", "PHP", "Elementor", "MySQL"],
     demoUrl: "https://jdmtraders.co.uk/",
     isConfidential: false,
     canEmbed: true, // This site allows iframe embedding
   },
+
   {
-    title: "Healthcare Management System",
-    description: "A comprehensive solution for managing patient records, appointments, and billing.",
+    title: "WordPress-Based Nonprofit Organization Site",
+    description: "Responsive WordPress site for a nonprofit with donation and community engagement features.",
     fullDescription:
-      "An advanced healthcare management system designed to streamline medical practice operations. Features include patient registration, appointment scheduling, billing processing, medical history tracking, and HIPAA-compliant data storage. Built with Angular and Express for enterprise-level reliability.",
-    image: "/placeholder.svg?height=600&width=800",
-    tags: ["Angular", "MySQL", "PHP", "Docker"],
-    demoUrl: "https://nextjs.org",
+      "A responsive and accessible WordPress website designed to represent the mission of the Delancey Street Foundation. It includes donation integrations, media galleries, volunteer information, and custom page layouts for community outreach.",
+    image: "/Delency.png?height=600&width=800",
+    tags: ["WordPress", "SEO", "PHP", "Elementor", "MySQL"],
+    demoUrl: "https://delanceystreetbc.org/",
+    isConfidential: false,
+    canEmbed: true, // This site allows iframe embedding
+  },
+
+  {
+    title: "Pakistan Army Museum CMS System",
+    description: "Secure and scalable inventory and content management system for the Pakistan Army Museum, GHQ Rawalpindi.",
+    fullDescription:
+      "A custom-built backend system developed to manage the digital inventory and content for the Pakistan Army Museum at GHQ Rawalpindi. Designed with a focus on high security, robust database design, and performance optimization, the system handles artifact cataloging, media storage, user access control, and audit logging. Developed using Node.js and Express.js, integrated with a PostgreSQL database, and secured with JWT authentication and role-based access. Media and document management is powered through cloud storage integration with AWS S3 or secure on-premise solutions.",
+    image: "/PAKarmy.jpg?height=600&width=400",
+    tags: ["Node.js", "Express.js", "PostgreSQL", "JWT", "RBAC", "REST API", "AWS S3","Inventory Management"],
+    //demoUrl: "https://nextjs.org",
     isConfidential: true,
     confidentialImage: "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL",
   },
+  
   {
     title: "Augmented Reality Dimension measuring app",
     description:
       "Instantly measure real-world objects and distances using your phone's camera with this AR app. Simply point, tap, and get dimensions overlaid on your screen.",
     fullDescription:
-      "Transforms your smartphone or tablet into a virtual measuring tape with this innovative Augmented Reality app. By leveraging your device's camera and advanced AR technology, you can quickly and easily measure the length, width, height, area, and even volume of objects and spaces around you. Simply point your camera, tap to set measurement points on the real world as seen through your screen, and the app will overlay accurate digital measurements in real-time. Ideal for quick estimations, DIY projects, interior design planning, and more.",
-    image: "/AR-Measure.png?height=600&width=800",
-    tags: ["Next.js", "React", "Gemini-API", "Lucide"],
+      "Note: The production version of this project is under client confidentiality and not publicly accessible. A demo is available to showcase core features. Transform your smartphone or tablet into a virtual measuring tape with this innovative Augmented Reality app. Using your device's camera and AR technology, it enables quick and accurate measurement of length, height, area, and volume in real-world environments. Just point, tap to set points, and see digital measurements overlaid in real time. Ideal for home projects, interior planning, and instant estimations.",
+    image: "/AR.jpg?height=600&width=800",
+    tags: ["Python", "Next.js", "React", "ARKit", "Computer Vision"],
     demoUrl: "https://radiator-measuring.netlify.app/",
     isConfidential: false,
     canEmbed: true, // This site allows iframe embedding
   },
   {
-    title: "Financial E-Wallet App",
-    description: "Interactive data visualization tools for financial analysis and reporting.",
+    title: "Knutsford Express Online Bus Booking System",
+    description: "A modern transport booking website for intercity travel across Jamaica.",
     fullDescription:
-      "A powerful financial analytics platform providing real-time data visualization, portfolio tracking, risk assessment, automated reporting, and predictive modeling. Built with Vue.js and Python for advanced data processing and beautiful visualizations.",
-    image: "/placeholder.svg?height=600&width=800",
-    tags: ["Vue.js", "Python", "D3.js", "FastAPI"],
-    demoUrl: "https://react.dev",
-    isConfidential: true,
-    confidentialImage: "/placeholder.svg?height=400&width=600&text=CONFIDENTIAL",
-  },
+      "We developed and automated the complete bus booking module for Knutsford Express, a leading Jamaican transport service. The system enables users to select routes, book seats, manage reservations, and make payments through a smooth, intuitive interface. We also built a robust regression test suite using Katalon Studio to automate key booking flows—route management, fare calculation, and trip confirmation—integrated with Azure DevOps for continuous testing and reporting. The solution supports CI/CD, cross-browser compatibility, and security validations.",
+    image: "/knu.png?height=600&width=800",
+    tags: ["Vue.js", "Nodejs", "Nest.js", "SQL", "Docker", "Katalon Studio", "Azure Devops"],
+    demoUrl: "https://www.knutsfordexpress.com/",
+    isConfidential: false,
+    canEmbed: true, 
+
+  }
 ]
+
+// Add a simple carousel component for screenshots
+function ScreenshotCarousel({ images }: { images: string[] }) {
+  const [index, setIndex] = useState(0);
+  if (!images || images.length === 0) return null;
+  return (
+    <div className="relative w-full h-[60vh] bg-black rounded-lg overflow-hidden flex items-center justify-center">
+      {/* Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => setIndex((i) => (i === 0 ? images.length - 1 : i - 1))}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#30BAAF] text-white rounded-full p-2 shadow-lg hover:bg-[#259e93] transition z-10"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            onClick={() => setIndex((i) => (i === images.length - 1 ? 0 : i + 1))}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#30BAAF] text-white rounded-full p-2 shadow-lg hover:bg-[#259e93] transition z-10"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </>
+      )}
+      {/* Image */}
+      <img
+        src={images[index]}
+        alt={`Screenshot ${index + 1}`}
+        className="absolute top-0 left-0 w-full h-full object-contain"
+      />
+      {/* Counter */}
+      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full">
+        {index + 1} / {images.length}
+      </span>
+    </div>
+  );
+}
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
@@ -134,16 +212,6 @@ export default function Projects() {
                         ))}
                       </div>
                       <div className="flex items-center justify-between">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-[#30BAAF] hover:text-white transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink className="h-4 w-4 mr-1" />
-                          <span className="text-sm">Live Demo</span>
-                        </a>
                         <div className="flex items-center text-xs text-gray-400">
                           <Info className="h-3 w-3 mr-1" />
                           <span>Click to preview</span>
@@ -205,7 +273,7 @@ export default function Projects() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-black/30 backdrop-blur-sm rounded-2xl border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 w-full max-w-7xl h-[90vh] overflow-hidden"
+              className="bg-black/30 backdrop-blur-sm rounded-2xl border border-[#30BAAF]/30 shadow-xl shadow-[#30BAAF]/20 w-full max-w-7xl max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="h-full flex flex-col">
@@ -276,15 +344,15 @@ export default function Projects() {
                             <div className="w-full bg-red-500/20 border border-red-500/50 text-red-200 py-2 px-3 rounded-lg text-center">
                               <p className="text-xs">Live demo not available for confidential projects</p>
                             </div>
-                          ) : (
+                          ) : projects[selectedProject].demoUrl ? (
                             <button
-                              onClick={() => openFullSite(projects[selectedProject].demoUrl)}
+                              onClick={() => openFullSite(projects[selectedProject].demoUrl!)}
                               className="w-full bg-[#30BAAF] hover:bg-[#2aa69b] text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm"
                             >
                               <ExternalLink className="h-4 w-4 mr-2" />
                               Open in New Tab
                             </button>
-                          )}
+                          ) : null}
                         </div>
 
                         {/* Additional Info - More Compact */}
@@ -316,7 +384,16 @@ export default function Projects() {
                     transition={{ delay: 0.3 }}
                   >
                     <div className="h-full bg-white rounded-xl overflow-hidden border border-[#30BAAF]/30 shadow-lg">
-                      {projects[selectedProject].isConfidential ? (
+                      {projects[selectedProject].screenshots && !projects[selectedProject].demoUrl ? (
+                        // Screenshot Carousel for projects with screenshots and no live site
+                        <div className="h-full flex flex-col items-center justify-center bg-gray-100 relative">
+                          <ScreenshotCarousel images={projects[selectedProject].screenshots} />
+                          <div className="absolute top-4 right-4 bg-orange-500/90 text-white px-3 py-2 rounded-lg text-sm flex items-center">
+                            <AlertTriangle className="h-4 w-4 mr-2" />
+                            Screenshot Preview
+                          </div>
+                        </div>
+                      ) : projects[selectedProject].isConfidential ? (
                         // Confidential Project Display
                         <div className="h-full flex flex-col items-center justify-center bg-gray-100 relative">
                           <div className="absolute inset-0 flex items-center justify-center">

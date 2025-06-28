@@ -1,4 +1,4 @@
-import { Linkedin, Instagram } from "lucide-react"
+import { Linkedin, Instagram, Facebook} from "lucide-react"
 
 export default function Footer() {
   return (
@@ -14,16 +14,22 @@ export default function Footer() {
 
           <div className="flex space-x-6 mb-6 md:mb-0">
             <a
-              href="https://pk.linkedin.com/company/kuga-tech?trk=public_post_feed-actor-name"
+              href="https://www.linkedin.com/company/kuga-tech/"
               className="text-gray-300 hover:text-[#30BAAF] transition-colors"
             >
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href="https://www.instagram.com/kuga_technologies/?theme=dark"
+              href="https://www.instagram.com/kuga_technologies/"
               className="text-gray-300 hover:text-[#30BAAF] transition-colors"
             >
               <Instagram className="h-6 w-6" />
+            </a>
+            <a
+              href="https://www.facebook.com/kugatech/"
+              className="text-gray-300 hover:text-[#30BAAF] transition-colors"
+            >
+              <Facebook className="h-6 w-6" />
             </a>
           </div>
 

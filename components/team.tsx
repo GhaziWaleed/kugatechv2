@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Ghazi Waleed",
-    role: "I made this Site",
+    role: "I made this site",
     image: "/ghazi_1.png", // Update this path to your actual image
     shortBio: "Full-stack developer with expertise in React, Node.js, and cloud architecture.",
     fullBio:
@@ -49,10 +49,10 @@ const teamMembers = [
   {
     name: "Kaleem Tahir",
     role: "Business Analyst",
-    image: "/kaleem_1.png", // Update this path to your actual image
+    image: "/kaleemupd.png", // Update this path to your actual image
     shortBio: "A dynamic leader blending strategic vision with analytical precision.",
     fullBio:
-      "A dynamic leader blending the strategic vision of a CMO with the analytical precision of a Business Analyst. Driving data-informed marketing strategies, optimizing business processes, and identifying growth opportunities to maximize ROI and achieve sustainable business success.",
+      "A dynamic leader combining strategic insight with analytical precision. Skilled in driving data-informed decisions, optimizing business processes, and uncovering growth opportunities to maximize ROI and support sustainable business success",
     linkedin: "https://www.linkedin.com/in/kaleem-tahir-64064226a/",
     github: "https://github.com/kaleemtahir",
   },
