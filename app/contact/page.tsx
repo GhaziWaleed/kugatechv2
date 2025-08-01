@@ -2,17 +2,18 @@
 
 import type React from "react"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft } from "lucide-react"
+import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft, Calendar, Shield } from "lucide-react"
 import Link from "next/link"
 import WaveBackground from "@/components/wave-background"
 import Footer from "@/components/footer"
 
-// EmailJS will be loaded via CDN
+// EmailJS and reCAPTCHA will be loaded via CDN
 declare global {
   interface Window {
     emailjs: any
+    grecaptcha: any
   }
 }
 
@@ -21,10 +22,61 @@ export default function ContactPage() {
     status: "idle" | "submitting" | "success" | "error"
     message?: string
   }>({ status: "idle" })
+  const [captchaCompleted, setCaptchaCompleted] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://www.google.com/recaptcha/api.js"
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
+
+    // Make callback functions globally available
+    window.onCaptchaSuccess = (token: string) => {
+      setCaptchaCompleted(true)
+      setCaptchaToken(token)
+    }
+
+    window.onCaptchaExpired = () => {
+      setCaptchaCompleted(false)
+      setCaptchaToken(null)
+    }
+
+    window.onCaptchaError = () => {
+      setCaptchaCompleted(false)
+      setCaptchaToken(null)
+      setFormStatus({
+        status: "error",
+        message: "reCAPTCHA verification failed. Please try again.",
+      })
+    }
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+      // Clean up global functions
+      delete window.onCaptchaSuccess
+      delete window.onCaptchaExpired
+      delete window.onCaptchaError
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Check if captcha is completed
+    if (!captchaCompleted || !captchaToken) {
+      setFormStatus({
+        status: "error",
+        message: "Please complete the reCAPTCHA verification before sending your message.",
+      })
+      return
+    }
+
     setFormStatus({ status: "submitting" })
 
     try {
@@ -47,8 +99,15 @@ export default function ContactPage() {
         message: "Thank you for your message! We will get back to you soon.",
       })
 
-      // Reset form
+      // Reset form and captcha
       formRef.current?.reset()
+      setCaptchaCompleted(false)
+      setCaptchaToken(null)
+
+      // Reset reCAPTCHA
+      if (window.grecaptcha) {
+        window.grecaptcha.reset()
+      }
     } catch (error) {
       console.error("Error sending email:", error)
       setFormStatus({
@@ -56,6 +115,11 @@ export default function ContactPage() {
         message: "Failed to send your message. Please try again or contact us directly at contact@kugatech.com.",
       })
     }
+  }
+
+  const openCalendly = () => {
+    // Replace with your actual Calendly URL
+    window.open("https://calendly.com/kugatech-consultation", "_blank")
   }
 
   return (
@@ -90,8 +154,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Ready to transform your ideas into reality? Reach out to us and let's start building something unique
-              together.
+              Ready to transform your ideas into reality? Send us a message or book a consultation call directly.
             </motion.p>
           </div>
 
@@ -137,6 +200,21 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Quick Action - Book Appointment */}
+                <div className="mt-8 p-6 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
+                  <h3 className="text-lg font-bold text-white mb-2">Prefer a Direct Call?</h3>
+                  <p className="text-gray-300 text-sm mb-4">
+                    Book a consultation call and let's discuss your project in detail.
+                  </p>
+                  <button
+                    onClick={openCalendly}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                  >
+                    <Calendar className="h-5 w-5 mr-2" />
+                    Book Consultation Call
+                  </button>
+                </div>
               </div>
             </motion.div>
 
@@ -154,12 +232,21 @@ export default function ContactPage() {
                   <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
                   <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
                   <p className="text-gray-300 text-center mb-6">{formStatus.message}</p>
-                  <button
-                    onClick={() => setFormStatus({ status: "idle" })}
-                    className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-xl transition-all"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => setFormStatus({ status: "idle" })}
+                      className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-xl transition-all"
+                    >
+                      Send Another Message
+                    </button>
+                    <button
+                      onClick={openCalendly}
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all flex items-center justify-center"
+                    >
+                      <Calendar className="h-4 w-4 mr-2" />
+                      Book a Call Instead
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -220,6 +307,29 @@ export default function ContactPage() {
                     ></textarea>
                   </div>
 
+                  {/* reCAPTCHA Section */}
+                  <div className="bg-black/20 rounded-xl p-4 border border-[#30BAAF]/20">
+                    <div className="flex items-center mb-3">
+                      <Shield className="h-5 w-5 text-[#30BAAF] mr-2" />
+                      <h3 className="text-white font-medium">Security Verification</h3>
+                    </div>
+                    <div className="flex justify-center">
+                      <div
+                        className="g-recaptcha"
+                        data-sitekey="6LfYourSiteKeyHere" // Replace with your actual site key
+                        data-theme="dark"
+                        data-callback="onCaptchaSuccess"
+                        data-expired-callback="onCaptchaExpired"
+                        data-error-callback="onCaptchaError"
+                      ></div>
+                    </div>
+                    {!captchaCompleted && (
+                      <p className="text-gray-400 text-sm mt-2 text-center">
+                        Please complete the verification above to send your message
+                      </p>
+                    )}
+                  </div>
+
                   {/* Hidden field for recipient email */}
                   <input type="hidden" name="to_email" value="contact@kugatech.com" />
 
@@ -230,20 +340,45 @@ export default function ContactPage() {
                     </div>
                   )}
 
-                  <button
-                    type="submit"
-                    disabled={formStatus.status === "submitting"}
-                    className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
-                  >
-                    {formStatus.status === "submitting" ? (
-                      <>
-                        <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      "Send Message"
-                    )}
-                  </button>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      type="submit"
+                      disabled={formStatus.status === "submitting" || !captchaCompleted}
+                      className={`flex-1 font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center ${
+                        captchaCompleted && formStatus.status !== "submitting"
+                          ? "bg-[#30BAAF] hover:bg-[#2aa69b] text-white"
+                          : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                      }`}
+                    >
+                      {formStatus.status === "submitting" ? (
+                        <>
+                          <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="h-5 w-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+
+                    <div className="flex items-center justify-center text-gray-400 text-sm px-4">OR</div>
+
+                    <button
+                      type="button"
+                      onClick={openCalendly}
+                      className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                    >
+                      <Calendar className="h-5 w-5 mr-2" />
+                      Book Appointment
+                    </button>
+                  </div>
+
+                  <div className="text-center text-gray-400 text-sm">
+                    <p>Choose your preferred way to connect with us</p>
+                  </div>
                 </form>
               )}
             </motion.div>
