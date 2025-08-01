@@ -35,6 +35,7 @@ export default function WhatsAppButton() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3 }}
           className="fixed bottom-6 right-6 z-50"
+          style={{ marginBottom: "70px" }} // Add margin to avoid overlap with back-to-top button
         >
           <button
             onClick={openWhatsApp}

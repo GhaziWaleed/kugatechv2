@@ -3,7 +3,7 @@
 import type React from "react"
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react"
-import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, Calendar, Shield } from "lucide-react"
+import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, Calendar } from "lucide-react"
 
 // EmailJS and reCAPTCHA will be loaded via CDN
 declare global {
@@ -160,9 +160,9 @@ export default function Contact() {
   const canSubmit = captchaError || captchaCompleted
 
   return (
-    <section id="contact" className="py-20 bg-transparent">
+    <section id="contact" className="py-16 bg-transparent">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <motion.h2
             className="text-4xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -183,9 +183,9 @@ export default function Contact() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <motion.div
-            className="lg:col-span-1 space-y-8"
+            className="lg:col-span-1 space-y-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -196,8 +196,8 @@ export default function Contact() {
                 <MapPin className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Our Location</h3>
-                <p className="text-gray-300">Office 2, GM Heights, Soan Avenue, Islamabad, Pakistan</p>
+                <h3 className="text-lg font-bold text-white mb-1">Our Location</h3>
+                <p className="text-gray-300 text-sm">Office 2, GM Heights, Soan Avenue, Islamabad, Pakistan</p>
               </div>
             </div>
 
@@ -206,8 +206,8 @@ export default function Contact() {
                 <Phone className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Phone Number</h3>
-                <p className="text-gray-300">+92333-0262686</p>
+                <h3 className="text-lg font-bold text-white mb-1">Phone Number</h3>
+                <p className="text-gray-300 text-sm">+92333-0262686</p>
               </div>
             </div>
 
@@ -216,60 +216,60 @@ export default function Contact() {
                 <Mail className="h-6 w-6 text-[#30BAAF]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Email Address</h3>
-                <p className="text-gray-300">contact@kugatech.com</p>
+                <h3 className="text-lg font-bold text-white mb-1">Email Address</h3>
+                <p className="text-gray-300 text-sm">contact@kugatech.com</p>
               </div>
             </div>
 
             {/* Quick Action - Book Appointment */}
-            <div className="p-6 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
+            <div className="p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
               <h3 className="text-lg font-bold text-white mb-2">Prefer a Direct Call?</h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-300 text-sm mb-3">
                 Book a consultation call and let's discuss your project in detail.
               </p>
               <button
                 onClick={openCalendly}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm"
               >
-                <Calendar className="h-5 w-5 mr-2" />
+                <Calendar className="h-4 w-4 mr-2" />
                 Book Consultation Call
               </button>
             </div>
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-2xl p-8"
+            className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-2xl p-6"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             {formStatus.status === "success" ? (
-              <div className="flex flex-col items-center justify-center h-full py-8">
-                <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                <p className="text-gray-300 text-center mb-6">{formStatus.message}</p>
-                <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col items-center justify-center py-6">
+                <CheckCircle className="h-12 w-12 text-green-500 mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-gray-300 text-center mb-4 text-sm">{formStatus.message}</p>
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={() => setFormStatus({ status: "idle" })}
-                    className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-xl transition-all"
+                    className="bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-4 rounded-xl transition-all text-sm"
                   >
                     Send Another Message
                   </button>
                   <button
                     onClick={openCalendly}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all flex items-center justify-center"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all flex items-center justify-center text-sm"
                   >
-                    <Calendar className="h-4 w-4 mr-2" />
+                    <Calendar className="h-3 w-3 mr-1" />
                     Book a Call Instead
                   </button>
                 </div>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="from_name" className="block text-white mb-2">
+                    <label htmlFor="from_name" className="block text-white mb-1 text-sm">
                       Your Name
                     </label>
                     <input
@@ -277,12 +277,12 @@ export default function Contact() {
                       id="from_name"
                       name="from_name"
                       required
-                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#30BAAF] text-sm"
                       disabled={formStatus.status === "submitting"}
                     />
                   </div>
                   <div>
-                    <label htmlFor="from_email" className="block text-white mb-2">
+                    <label htmlFor="from_email" className="block text-white mb-1 text-sm">
                       Your Email
                     </label>
                     <input
@@ -290,14 +290,14 @@ export default function Contact() {
                       id="from_email"
                       name="from_email"
                       required
-                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                      className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#30BAAF] text-sm"
                       disabled={formStatus.status === "submitting"}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-white mb-2">
+                  <label htmlFor="subject" className="block text-white mb-1 text-sm">
                     Subject
                   </label>
                   <input
@@ -305,64 +305,53 @@ export default function Contact() {
                     id="subject"
                     name="subject"
                     required
-                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#30BAAF] text-sm"
                     disabled={formStatus.status === "submitting"}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-white mb-2">
+                  <label htmlFor="message" className="block text-white mb-1 text-sm">
                     Your Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
-                    rows={6}
-                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#30BAAF]"
+                    rows={4}
+                    className="w-full bg-black/50 text-white border border-[#30BAAF]/30 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#30BAAF] text-sm"
                     disabled={formStatus.status === "submitting"}
                   ></textarea>
                 </div>
 
-                {/* reCAPTCHA Section */}
+                {/* Simplified reCAPTCHA - Just the widget */}
                 {!captchaError && (
-                  <div className="bg-black/20 rounded-xl p-4 border border-[#30BAAF]/20">
-                    <div className="flex items-center mb-3">
-                      <Shield className="h-5 w-5 text-[#30BAAF] mr-2" />
-                      <h3 className="text-white font-medium">Security Verification</h3>
-                    </div>
-                    <div className="flex justify-center">
-                      {captchaLoaded ? (
-                        <div
-                          className="g-recaptcha"
-                          data-sitekey={RECAPTCHA_SITE_KEY}
-                          data-theme="dark"
-                          data-callback="onCaptchaSuccess"
-                          data-expired-callback="onCaptchaExpired"
-                          data-error-callback="onCaptchaError"
-                        ></div>
-                      ) : (
-                        <div className="flex items-center justify-center py-8">
-                          <Loader2 className="h-6 w-6 animate-spin text-[#30BAAF] mr-2" />
-                          <span className="text-gray-300">Loading security verification...</span>
-                        </div>
-                      )}
-                    </div>
-                    {!captchaCompleted && captchaLoaded && (
-                      <p className="text-gray-400 text-sm mt-2 text-center">
-                        Please complete the verification above to send your message
-                      </p>
+                  <div className="flex justify-center py-2">
+                    {captchaLoaded ? (
+                      <div
+                        className="g-recaptcha"
+                        data-sitekey={RECAPTCHA_SITE_KEY}
+                        data-theme="dark"
+                        data-callback="onCaptchaSuccess"
+                        data-expired-callback="onCaptchaExpired"
+                        data-error-callback="onCaptchaError"
+                      ></div>
+                    ) : (
+                      <div className="flex items-center justify-center py-4">
+                        <Loader2 className="h-4 w-4 animate-spin text-[#30BAAF] mr-2" />
+                        <span className="text-gray-300 text-sm">Loading verification...</span>
+                      </div>
                     )}
                   </div>
                 )}
 
                 {/* Captcha Error Fallback */}
                 {captchaError && (
-                  <div className="bg-yellow-500/20 border border-yellow-500/50 text-yellow-200 px-4 py-3 rounded-xl flex items-start">
-                    <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
+                  <div className="bg-yellow-500/20 border border-yellow-500/50 text-yellow-200 px-3 py-2 rounded-xl flex items-start text-sm">
+                    <AlertCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-medium">Security verification unavailable</p>
-                      <p className="text-sm">You can still send your message, but it may take longer to process.</p>
+                      <p className="text-xs">You can still send your message.</p>
                     </div>
                   </div>
                 )}
@@ -371,18 +360,18 @@ export default function Contact() {
                 <input type="hidden" name="to_email" value="contact@kugatech.com" />
 
                 {formStatus.status === "error" && (
-                  <div className="bg-red-500/20 border border-red-500/50 text-red-200 px-4 py-3 rounded-xl flex items-start">
-                    <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
+                  <div className="bg-red-500/20 border border-red-500/50 text-red-200 px-3 py-2 rounded-xl flex items-start text-sm">
+                    <AlertCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
                     <p>{formStatus.message}</p>
                   </div>
                 )}
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
                     disabled={formStatus.status === "submitting" || (!canSubmit && !captchaError)}
-                    className={`flex-1 font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center ${
+                    className={`flex-1 font-bold py-2 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm ${
                       canSubmit && formStatus.status !== "submitting"
                         ? "bg-[#30BAAF] hover:bg-[#2aa69b] text-white"
                         : "bg-gray-600 text-gray-400 cursor-not-allowed"
@@ -390,30 +379,30 @@ export default function Contact() {
                   >
                     {formStatus.status === "submitting" ? (
                       <>
-                        <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                         Sending...
                       </>
                     ) : (
                       <>
-                        <Mail className="h-5 w-5 mr-2" />
+                        <Mail className="h-4 w-4 mr-2" />
                         Send Message
                       </>
                     )}
                   </button>
 
-                  <div className="flex items-center justify-center text-gray-400 text-sm px-4">OR</div>
+                  <div className="flex items-center justify-center text-gray-400 text-xs px-2">OR</div>
 
                   <button
                     type="button"
                     onClick={openCalendly}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm"
                   >
-                    <Calendar className="h-5 w-5 mr-2" />
+                    <Calendar className="h-4 w-4 mr-2" />
                     Book Appointment
                   </button>
                 </div>
 
-                <div className="text-center text-gray-400 text-sm">
+                <div className="text-center text-gray-400 text-xs">
                   <p>Choose your preferred way to connect with us</p>
                 </div>
               </form>
