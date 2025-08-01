@@ -316,7 +316,7 @@ export default function ContactPage() {
                     <div className="flex justify-center">
                       <div
                         className="g-recaptcha"
-                        data-sitekey="6LfYourSiteKeyHere" // Replace with your actual site key
+                        data-sitekey="6LdOD5crAAAAALfuO3jpKKMqRNvSh3cF4zWyb89j" // Replace with your actual site key
                         data-theme="dark"
                         data-callback="onCaptchaSuccess"
                         data-expired-callback="onCaptchaExpired"
