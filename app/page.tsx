@@ -12,11 +12,12 @@ import Footer from "@/components/footer"
 import WaveBackground from "@/components/wave-background"
 import SplashScreen from "@/components/splash-screen"
 import BackToTop from "@/components/back-to-top"
+import WhatsAppButton from "@/components/whatsapp-button"
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true)
 
-  // aDisable scroll when splash screen is showing2
+  // Disable scroll when splash screen is showing
   useEffect(() => {
     if (showSplash) {
       document.body.style.overflow = "hidden"
@@ -46,6 +47,7 @@ export default function Home() {
           <Contact />
           <Footer />
           <BackToTop />
+          <WhatsAppButton />
         </>
       )}
     </main>

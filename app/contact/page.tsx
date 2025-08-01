@@ -8,6 +8,7 @@ import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft, Cale
 import Link from "next/link"
 import WaveBackground from "@/components/wave-background"
 import Footer from "@/components/footer"
+import WhatsAppButton from "@/components/whatsapp-button"
 
 // EmailJS and reCAPTCHA will be loaded via CDN
 declare global {
@@ -435,6 +436,7 @@ export default function ContactPage() {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </main>
   )
 }
