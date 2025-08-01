@@ -14,6 +14,9 @@ declare global {
   interface Window {
     emailjs: any
     grecaptcha: any
+    onCaptchaSuccess: (token: string) => void
+    onCaptchaExpired: () => void
+    onCaptchaError: () => void
   }
 }
 
@@ -24,7 +27,12 @@ export default function ContactPage() {
   }>({ status: "idle" })
   const [captchaCompleted, setCaptchaCompleted] = useState(false)
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaLoaded, setCaptchaLoaded] = useState(false)
+  const [captchaError, setCaptchaError] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+
+  // For now, let's use a test site key (you'll need to replace this)
+  const RECAPTCHA_SITE_KEY = "6LdAGJcrAAAAAOS0_FaNQ7eBoqZUbY3u2F6a-d5D" // This is Google's test key
 
   // Load reCAPTCHA script
   useEffect(() => {
@@ -32,26 +40,37 @@ export default function ContactPage() {
     script.src = "https://www.google.com/recaptcha/api.js"
     script.async = true
     script.defer = true
+
+    script.onload = () => {
+      setCaptchaLoaded(true)
+    }
+
+    script.onerror = () => {
+      setCaptchaError(true)
+      console.error("Failed to load reCAPTCHA")
+    }
+
     document.body.appendChild(script)
 
     // Make callback functions globally available
     window.onCaptchaSuccess = (token: string) => {
+      console.log("Captcha success:", token)
       setCaptchaCompleted(true)
       setCaptchaToken(token)
+      setFormStatus({ status: "idle" }) // Clear any previous errors
     }
 
     window.onCaptchaExpired = () => {
+      console.log("Captcha expired")
       setCaptchaCompleted(false)
       setCaptchaToken(null)
     }
 
     window.onCaptchaError = () => {
+      console.log("Captcha error")
       setCaptchaCompleted(false)
       setCaptchaToken(null)
-      setFormStatus({
-        status: "error",
-        message: "reCAPTCHA verification failed. Please try again.",
-      })
+      setCaptchaError(true)
     }
 
     return () => {
@@ -59,17 +78,19 @@ export default function ContactPage() {
         document.body.removeChild(script)
       }
       // Clean up global functions
-      delete window.onCaptchaSuccess
-      delete window.onCaptchaExpired
-      delete window.onCaptchaError
+      if (window.onCaptchaSuccess) delete window.onCaptchaSuccess
+      if (window.onCaptchaExpired) delete window.onCaptchaExpired
+      if (window.onCaptchaError) delete window.onCaptchaError
     }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Check if captcha is completed
-    if (!captchaCompleted || !captchaToken) {
+    // If captcha failed to load, allow form submission with warning
+    if (captchaError) {
+      console.log("Captcha failed to load, proceeding without verification")
+    } else if (!captchaCompleted || !captchaToken) {
       setFormStatus({
         status: "error",
         message: "Please complete the reCAPTCHA verification before sending your message.",
@@ -104,9 +125,13 @@ export default function ContactPage() {
       setCaptchaCompleted(false)
       setCaptchaToken(null)
 
-      // Reset reCAPTCHA
-      if (window.grecaptcha) {
-        window.grecaptcha.reset()
+      // Reset reCAPTCHA if available
+      if (window.grecaptcha && !captchaError) {
+        try {
+          window.grecaptcha.reset()
+        } catch (error) {
+          console.log("Could not reset captcha:", error)
+        }
       }
     } catch (error) {
       console.error("Error sending email:", error)
@@ -121,6 +146,9 @@ export default function ContactPage() {
     // Replace with your actual Calendly URL
     window.open("https://calendly.com/kugatech-consultation", "_blank")
   }
+
+  // Determine if form can be submitted
+  const canSubmit = captchaError || captchaCompleted
 
   return (
     <main className="min-h-screen">
@@ -308,27 +336,47 @@ export default function ContactPage() {
                   </div>
 
                   {/* reCAPTCHA Section */}
-                  <div className="bg-black/20 rounded-xl p-4 border border-[#30BAAF]/20">
-                    <div className="flex items-center mb-3">
-                      <Shield className="h-5 w-5 text-[#30BAAF] mr-2" />
-                      <h3 className="text-white font-medium">Security Verification</h3>
+                  {!captchaError && (
+                    <div className="bg-black/20 rounded-xl p-4 border border-[#30BAAF]/20">
+                      <div className="flex items-center mb-3">
+                        <Shield className="h-5 w-5 text-[#30BAAF] mr-2" />
+                        <h3 className="text-white font-medium">Security Verification</h3>
+                      </div>
+                      <div className="flex justify-center">
+                        {captchaLoaded ? (
+                          <div
+                            className="g-recaptcha"
+                            data-sitekey={RECAPTCHA_SITE_KEY}
+                            data-theme="dark"
+                            data-callback="onCaptchaSuccess"
+                            data-expired-callback="onCaptchaExpired"
+                            data-error-callback="onCaptchaError"
+                          ></div>
+                        ) : (
+                          <div className="flex items-center justify-center py-8">
+                            <Loader2 className="h-6 w-6 animate-spin text-[#30BAAF] mr-2" />
+                            <span className="text-gray-300">Loading security verification...</span>
+                          </div>
+                        )}
+                      </div>
+                      {!captchaCompleted && captchaLoaded && (
+                        <p className="text-gray-400 text-sm mt-2 text-center">
+                          Please complete the verification above to send your message
+                        </p>
+                      )}
                     </div>
-                    <div className="flex justify-center">
-                      <div
-                        className="g-recaptcha"
-                        data-sitekey="6LdOD5crAAAAALfuO3jpKKMqRNvSh3cF4zWyb89j" // Replace with your actual site key
-                        data-theme="dark"
-                        data-callback="onCaptchaSuccess"
-                        data-expired-callback="onCaptchaExpired"
-                        data-error-callback="onCaptchaError"
-                      ></div>
+                  )}
+
+                  {/* Captcha Error Fallback */}
+                  {captchaError && (
+                    <div className="bg-yellow-500/20 border border-yellow-500/50 text-yellow-200 px-4 py-3 rounded-xl flex items-start">
+                      <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium">Security verification unavailable</p>
+                        <p className="text-sm">You can still send your message, but it may take longer to process.</p>
+                      </div>
                     </div>
-                    {!captchaCompleted && (
-                      <p className="text-gray-400 text-sm mt-2 text-center">
-                        Please complete the verification above to send your message
-                      </p>
-                    )}
-                  </div>
+                  )}
 
                   {/* Hidden field for recipient email */}
                   <input type="hidden" name="to_email" value="contact@kugatech.com" />
@@ -344,9 +392,9 @@ export default function ContactPage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       type="submit"
-                      disabled={formStatus.status === "submitting" || !captchaCompleted}
+                      disabled={formStatus.status === "submitting" || (!canSubmit && !captchaError)}
                       className={`flex-1 font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center ${
-                        captchaCompleted && formStatus.status !== "submitting"
+                        canSubmit && formStatus.status !== "submitting"
                           ? "bg-[#30BAAF] hover:bg-[#2aa69b] text-white"
                           : "bg-gray-600 text-gray-400 cursor-not-allowed"
                       }`}
