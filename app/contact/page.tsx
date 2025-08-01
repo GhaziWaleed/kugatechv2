@@ -183,7 +183,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Ready to transform your ideas into reality? Send us a message or book a consultation call directly.
+              Talk to our Team of Expert Analysts. Send us a message or book a Meeting For FREE CONSULTATION.
             </motion.p>
           </div>
 
@@ -241,7 +241,7 @@ export default function ContactPage() {
                     className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
                   >
                     <Calendar className="h-5 w-5 mr-2" />
-                    Book Consultation Call
+                    Book Free Consultation Call
                   </button>
                 </div>
               </div>
