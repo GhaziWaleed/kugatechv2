@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
@@ -31,6 +31,7 @@ export default function ContactPage() {
   const [captchaLoaded, setCaptchaLoaded] = useState(false)
   const [captchaError, setCaptchaError] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const [calendlyOpen, setCalendlyOpen] = useState(false)
 
   // For now, let's use a test site key (you'll need to replace this)
   const RECAPTCHA_SITE_KEY = "6LdAGJcrAAAAAOS0_FaNQ7eBoqZUbY3u2F6a-d5D" // This is Google's test key
@@ -144,16 +145,39 @@ export default function ContactPage() {
   }
 
   const openCalendly = () => {
-    // Replace with your actual Calendly URL
-    //window.open("https://calendly.com/techkuga", "_blank")
-    window.open("https://calendly.com/contact-kugatech/30min", "_blank")
+    setCalendlyOpen(true)
+  }
+
+  const closeCalendly = () => {
+    setCalendlyOpen(false)
   }
 
   // Determine if form can be submitted
   const canSubmit = captchaError || captchaCompleted
 
   return (
-    <main className="min-h-screen">
+    <>
+      {/* Calendly Modal */}
+      {calendlyOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="relative bg-white rounded-2xl shadow-xl max-w-2xl w-full mx-4">
+            <button
+              onClick={closeCalendly}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <iframe
+              src="https://calendly.com/contact-kugatech/30min"
+              title="Book a Consultation Call"
+              className="w-full h-[600px] rounded-b-2xl border-0"
+              allow="camera; microphone;"
+            ></iframe>
+          </div>
+        </div>
+      )}
+      <main className="min-h-screen">
       <WaveBackground />
 
       <section className="min-h-screen pt-24 pb-16 flex items-center">
@@ -238,8 +262,9 @@ export default function ContactPage() {
                     Book a consultation call and let's discuss your project in detail.
                   </p>
                   <button
+                    type="button"
                     onClick={openCalendly}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
                   >
                     <Calendar className="h-5 w-5 mr-2" />
                     Book Free Consultation Call
@@ -270,6 +295,7 @@ export default function ContactPage() {
                       Send Another Message
                     </button>
                     <button
+                      type="button"
                       onClick={openCalendly}
                       className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all flex items-center justify-center"
                     >
@@ -439,5 +465,6 @@ export default function ContactPage() {
       <Footer />
       <WhatsAppButton />
     </main>
+    </>
   )
 }
