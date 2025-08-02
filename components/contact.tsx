@@ -255,7 +255,7 @@ export default function Contact() {
               <button
                 type="button"
                 onClick={openCalendly}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm"
+                className="w-full bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-4 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm shadow-lg"
               >
                 <Calendar className="h-4 w-4 mr-2" />
                 Book Consultation Call
@@ -285,7 +285,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={openCalendly}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all flex items-center justify-center text-sm"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all flex items-center justify-center text-sm shadow-lg"
                   >
                     <Calendar className="h-3 w-3 mr-1" />
                     Book a Call Instead
@@ -422,7 +422,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={openCalendly}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm"
+                    className="flex-1 bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-2 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm shadow-lg"
                   >
                     <Calendar className="h-4 w-4 mr-2" />
                     Book Appointment

@@ -264,7 +264,7 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={openCalendly}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                    className="w-full bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center shadow-lg"
                   >
                     <Calendar className="h-5 w-5 mr-2" />
                     Book Free Consultation Call
@@ -297,7 +297,7 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={openCalendly}
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all flex items-center justify-center"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-xl transition-all flex items-center justify-center shadow-lg"
                     >
                       <Calendar className="h-4 w-4 mr-2" />
                       Book a Call Instead
@@ -445,7 +445,7 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={openCalendly}
-                      className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center"
+                      className="flex-1 bg-[#30BAAF] hover:bg-[#2aa69b] text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center shadow-lg"
                     >
                       <Calendar className="h-5 w-5 mr-2" />
                       Book Appointment
