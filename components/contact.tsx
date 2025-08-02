@@ -26,6 +26,7 @@ export default function Contact() {
   const [captchaLoaded, setCaptchaLoaded] = useState(false)
   const [captchaError, setCaptchaError] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const [calendlyOpen, setCalendlyOpen] = useState(false)
 
   // For now, let's use a test site key (you'll need to replace this)
   const RECAPTCHA_SITE_KEY = "6LdAGJcrAAAAAOS0_FaNQ7eBoqZUbY3u2F6a-d5D" // This is Google's test key
@@ -152,16 +153,39 @@ export default function Contact() {
   }
 
   const openCalendly = () => {
-    // Replace with your actual Calendly URL
-    //window.open("https://calendly.com/kugatech-consultation", "_blank")
-    window.open("https://calendly.com/contact-kugatech/30min", "_blank")
+    setCalendlyOpen(true)
+  }
+
+  const closeCalendly = () => {
+    setCalendlyOpen(false)
   }
 
   // Determine if form can be submitted
   const canSubmit = captchaError || captchaCompleted
 
   return (
-    <section id="contact" className="py-16 bg-transparent">
+    <>
+      {/* Calendly Modal */}
+      {calendlyOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="relative bg-white rounded-2xl shadow-xl max-w-2xl w-full mx-4">
+            <button
+              onClick={closeCalendly}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <iframe
+              src="https://calendly.com/contact-kugatech/30min"
+              title="Book a Consultation Call"
+              className="w-full h-[600px] rounded-b-2xl border-0"
+              allow="camera; microphone;"
+            ></iframe>
+          </div>
+        </div>
+      )}
+      <section id="contact" className="py-16 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <motion.h2
@@ -412,5 +436,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   )
 }
