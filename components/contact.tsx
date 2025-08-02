@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react"
 import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, Calendar } from "lucide-react"
@@ -253,6 +253,7 @@ export default function Contact() {
                 Book a consultation call and let's discuss your project in detail.
               </p>
               <button
+                type="button"
                 onClick={openCalendly}
                 className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center text-sm"
               >
@@ -282,6 +283,7 @@ export default function Contact() {
                     Send Another Message
                   </button>
                   <button
+                    type="button"
                     onClick={openCalendly}
                     className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-xl transition-all flex items-center justify-center text-sm"
                   >
