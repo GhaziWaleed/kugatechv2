@@ -153,7 +153,8 @@ export default function Contact() {
 
   const openCalendly = () => {
     // Replace with your actual Calendly URL
-    window.open("https://calendly.com/kugatech-consultation", "_blank")
+    //window.open("https://calendly.com/kugatech-consultation", "_blank")
+    window.open("https://calendly.com/contact-kugatech/30min", "_blank")
   }
 
   // Determine if form can be submitted
