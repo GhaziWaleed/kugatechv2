@@ -13,6 +13,7 @@ import WaveBackground from "@/components/wave-background"
 import SplashScreen from "@/components/splash-screen"
 import BackToTop from "@/components/back-to-top"
 import WhatsAppButton from "@/components/whatsapp-button"
+import DotNavigation from "@/components/dot-navigation"
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true)
@@ -39,6 +40,7 @@ export default function Home() {
       ) : (
         <>
           <Navbar />
+          <DotNavigation />
           <Hero />
           <Services />
           <DevelopmentProcess />

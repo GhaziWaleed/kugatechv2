@@ -3,36 +3,24 @@
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Services", href: "#services" },
-  { name: "Process", href: "#process" },
-  { name: "Projects", href: "#projects" },
-  { name: "Team", href: "#team" },
-  { name: "Contact Us", href: "#contact", highlight: true },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Process", href: "/process" },
+  { name: "Projects", href: "/projects" },
+  { name: "Team", href: "/team" },
+  { name: "Contact Us", href: "/contact", highlight: true },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-
-      // Optional: Update active section based on scroll position
-      const sections = navItems.map((item) => item.href.substring(1))
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section)
-        if (!element) return false
-        const rect = element.getBoundingClientRect()
-        return rect.top <= 100 && rect.bottom >= 100
-      })
-
-      if (currentSection) {
-        setActiveSection(currentSection)
-      }
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -59,16 +47,8 @@ export default function Navbar() {
                     href={item.href}
                     className={cn(
                       "text-xs sm:text-sm md:text-base text-white hover:text-[#30BAAF] transition-colors px-1.5 sm:px-3 py-1 rounded-full",
-                      activeSection === item.href.substring(1) && "bg-[#30BAAF]/20 text-[#30BAAF]",
+                      pathname === item.href && "bg-[#30BAAF]/20 text-[#30BAAF]",
                     )}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      const element = document.querySelector(item.href)
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" })
-                        setActiveSection(item.href.substring(1))
-                      }
-                    }}
                   >
                     {item.name}
                   </Link>
@@ -77,16 +57,11 @@ export default function Navbar() {
               {/* Contact Us - stays in navbar when not scrolled */}
               {!scrolled && (
                 <Link
-                  href="#contact"
-                  className="text-xs sm:text-sm md:text-base bg-gradient-to-r from-[#30BAAF] to-[#2aa69b] text-white font-bold px-1.5 sm:px-3 py-1 rounded-full transition-all duration-300 hover:from-[#2aa69b] hover:to-[#30BAAF] hover:scale-105"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const element = document.querySelector("#contact")
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                      setActiveSection("contact")
-                    }
-                  }}
+                  href="/contact"
+                  className={cn(
+                    "text-xs sm:text-sm md:text-base bg-gradient-to-r from-[#30BAAF] to-[#2aa69b] text-white font-bold px-1.5 sm:px-3 py-1 rounded-full transition-all duration-300 hover:from-[#2aa69b] hover:to-[#30BAAF] hover:scale-105",
+                    pathname === "/contact" && "ring-2 ring-white/30",
+                  )}
                 >
                   Contact Us
                 </Link>
@@ -164,16 +139,11 @@ export default function Navbar() {
               />
 
               <Link
-                href="#contact"
-                className="bg-gradient-to-r from-[#30BAAF] to-[#2aa69b] hover:from-[#2aa69b] hover:to-[#30BAAF] text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#30BAAF]/30 px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg text-xs sm:text-sm md:text-base whitespace-nowrap relative overflow-hidden"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const element = document.querySelector("#contact")
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" })
-                    setActiveSection("contact")
-                  }
-                }}
+                href="/contact"
+                className={cn(
+                  "bg-gradient-to-r from-[#30BAAF] to-[#2aa69b] hover:from-[#2aa69b] hover:to-[#30BAAF] text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#30BAAF]/30 px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg text-xs sm:text-sm md:text-base whitespace-nowrap relative overflow-hidden",
+                  pathname === "/contact" && "ring-2 ring-white/30",
+                )}
               >
                 <span className="relative z-10">Contact Us</span>
 
