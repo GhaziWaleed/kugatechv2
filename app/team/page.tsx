@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft } from 'lucide-react'
 import Link from "next/link"
 import WaveBackground from "@/components/wave-background"
+import Navbar from "@/components/navbar"
 import Team from "@/components/team"
 import Footer from "@/components/footer"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -12,6 +13,7 @@ export default function TeamPage() {
   return (
     <main className="min-h-screen">
       <WaveBackground />
+      <Navbar />
 
       <section className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-4">

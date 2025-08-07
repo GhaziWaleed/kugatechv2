@@ -1,12 +1,12 @@
 "use client"
-
-import React from "react"
+import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft, Calendar, Shield } from "lucide-react"
+import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader2, ArrowLeft, Calendar, Shield } from 'lucide-react'
 import Link from "next/link"
 import WaveBackground from "@/components/wave-background"
+import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import WhatsAppButton from "@/components/whatsapp-button"
 
@@ -179,7 +179,7 @@ export default function ContactPage() {
       )}
       <main className="min-h-screen">
       <WaveBackground />
-
+<Navbar />
       <section className="min-h-screen pt-24 pb-16 flex items-center">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center mb-12">
