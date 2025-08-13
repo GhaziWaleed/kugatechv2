@@ -92,7 +92,7 @@ const projects = [
     isConfidential: false,
     canEmbed: true, // This site allows iframe embedding
   },
-  {
+  /*{
     title: "Knutsford Express Online Bus Booking System",
     description: "A modern transport booking website for intercity travel across Jamaica.",
     fullDescription:
@@ -103,7 +103,7 @@ const projects = [
     isConfidential: false,
     canEmbed: true, 
 
-  }
+  }*/
 ]
 
 // Add a simple carousel component for screenshots
